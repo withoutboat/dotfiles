@@ -1,40 +1,35 @@
-{ lib, ... }:
 {
-  imports = [ ];
-
-  nixpkgs.config = {
-
-    allowUnfreePredicate =
-      pkg:
-      builtins.elem (lib.getName pkg) [
-        "zoom"
-        "unrar"
-        "terraform"
-        "codeium"
-        # browser extensions
-        "onepassword-password-manager"
-        "okta-browser-plugin"
-      ];
-  };
-
-  nixpkgs.overlays = [
-    nur.overlay
-    vim-plugins.overlay
-    (final: prev: { zjstatus = zjstatus.packages.${prev.system}.default; })
+  lib,
+  nur,
+  vim-plugins,
+  zjstatus,
+  ...
+}:
+{
+  imports = [
+    ../../modules/cli.nix
+    ../../modules/firefox
+    ../../modules/fonts.nix
+    ../../modules/git
+    ../../modules/nu
+    ../../modules/nvim
+    ../../modules/programming.nix
+    ../../modules/system-management
+    ../../modules/zellij
+    ../../modules/zsh
   ];
+
+  programs.home-manager.enable = true;
+
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+    };
+  };
 
   home = {
     username = "mark";
     homeDirectory = "/home/mark";
-  };
-
-  home.packages = [
-  ];
-
-  home.file = {
-  };
-
-  programs = {
-    firefox.enable = true;
+    stateVersion = "24.11";
   };
 }

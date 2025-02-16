@@ -49,51 +49,18 @@
       mac-app-util,
     }:
     let
-      home-common =
-        { lib, ... }:
-        {
-          # NOTE: Injecting colorscheme so that it is passed down all the imports
-          _module.args = {
-            colorscheme = import ./colorschemes/tokyonight.nix;
-          };
-          nixpkgs.config = {
-
-            allowUnfreePredicate =
-              pkg:
-              builtins.elem (lib.getName pkg) [
-                "zoom"
-                "unrar"
-                "terraform"
-                "codeium"
-                # browser extensions
-                "onepassword-password-manager"
-                "okta-browser-plugin"
-              ];
-          };
-
-          nixpkgs.overlays = [
-            nur.overlay
-            vim-plugins.overlay
-            (final: prev: { zjstatus = zjstatus.packages.${prev.system}.default; })
-          ];
-
-          # Let Home Manager install and manage itself.
-          programs.home-manager.enable = true;
-          home.stateVersion = "22.05";
-
-          imports = [
-            ./modules/cli.nix
-            ./modules/firefox
-            ./modules/fonts.nix
-            ./modules/git
-            ./modules/nu
-            ./modules/nvim
-            ./modules/programming.nix
-            ./modules/system-management
-            ./modules/zellij
-            ./modules/zsh
-          ];
+      overlays = {
+        # NOTE: Injecting colorscheme so that it is passed down all the imports
+        _module.args = {
+          colorscheme = import ./colorschemes/tokyonight.nix;
         };
+        nixpkgs.overlays = [
+          nur.overlay
+          vim-plugins.overlay
+          (final: prev: { zjstatus = zjstatus.packages.${prev.system}.default; })
+        ];
+
+      };
 
       home-macbook = {
         # Hack: Firefox does not work on mac so we have to depend on an overlay.
@@ -126,38 +93,47 @@
 
     in
     {
-      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [ ./system/nixos/configuration.nix ];
-      };
-
-      homeConfigurations = {
-        nixos = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages."x86_64-linux";
-          modules = [
-            home-common
-            home-linux
-          ];
-        };
-
-        pc-max = nixpkgs.lib.nixosSystem {
-          pkgs = nixpkgs.legacyPackages."x86_64-linux";
-          modules = [ ./hosts/pc-max ];
-        };
-
-        srt-l02-sekhmet = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages."x86_64-darwin";
-          modules = [
-            home-common
-            home-macbook
-          ];
-        };
-      };
+      #  nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+      #    system = "x86_64-linux";
+      #    modules = [ ./system/nixos/configuration.nix ];
+      #  };
 
       nixosConfigurations = {
-
+        pc-max = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            overlays
+            ./hosts/pc-max
+          ];
+        };
       };
 
+      #      homeConfigurations = {
+      #        nixos = home-manager.lib.homeManagerConfiguration {
+      #          pkgs = nixpkgs.legacyPackages."x86_64-linux";
+      #          modules = [
+      #            overlays
+      #            home-linux
+      #          ];
+      #        };
+      #
+      #        pc-max = home-manager.lib.homeManagerConfiguration {
+      #          pkgs = nixpkgs.legacyPackages."x86_64-linux";
+      #          modules = [
+      #            overlays
+      #            ./hosts/pc-max/home.nix
+      #          ];
+      #        };
+      #
+      #        srt-l02-sekhmet = home-manager.lib.homeManagerConfiguration {
+      #          pkgs = nixpkgs.legacyPackages."x86_64-darwin";
+      #          modules = [
+      #            overlays
+      #            home-macbook
+      #          ];
+      #        };
+      #      };
+      #
       darwinConfigurations."srt-l02-sekhmet" = darwin.lib.darwinSystem {
         pkgs = nixpkgs.legacyPackages."x86_64-darwin";
         modules = [

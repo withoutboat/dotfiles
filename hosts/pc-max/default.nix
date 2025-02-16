@@ -1,17 +1,11 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ../../modules
+    ./configuration.nix
     ../../modules/nvidia.nix
-    ../../modules/audio.nix
   ];
 
   home-manager = {
     users.mark = import ./home.nix;
   };
-
-  networking = {
-    hostName = "nixos";
-  };
-
 }
