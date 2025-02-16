@@ -381,13 +381,13 @@
         "nvim-sqls-src": "nvim-sqls-src"
       },
       "locked": {
-        "lastModified": 1,
+        "lastModified": 1739531775,
         "narHash": "sha256-+OmkZ4Lcybj8y0geAbi7OGxO/mLAcgRdhVxpK8cnNtY=",
-        "path": "./modules/nvim/plugins",
+        "path": "/home/mark/.dotfiles/modules/nvim/plugins",
         "type": "path"
       },
       "original": {
-        "path": "./modules/nvim/plugins",
+        "path": "/home/mark/.dotfiles/modules/nvim/plugins",
         "type": "path"
       }
     },

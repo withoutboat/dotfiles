@@ -40,21 +40,24 @@
       self,
       nur,
       vim-plugins,
+      nixpkgs,
       home-manager,
       zjstatus,
-nixpkgs,
+
       darwin,
       nixpkgs-firefox-darwin,
       mac-app-util,
     }@inputs:
     let
       inherit (self) outputs;
-      overlays =  [
+      overlays = {
+        nixpkgs.overlays = [
           nur.overlay
           vim-plugins.overlay
           (final: prev: { zjstatus = zjstatus.packages.${prev.system}.default; })
         ];
 
+      };
 
       home-macbook = {
         # Hack: Firefox does not work on mac so we have to depend on an overlay.
@@ -94,12 +97,13 @@ nixpkgs,
 
       nixosConfigurations = {
         pc-max = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
+ 		pkgs = nixpkgs.legacyPackages."x86_64-linux";
+
           modules = [
-		{ nixpkgs.overlays = overlays; }
+		overlays
             ./hosts/pc-max
           ];
-          specialArgs = { inherit inputs outputs overlays; };
+          specialArgs = { inherit inputs outputs; };
         };
       };
 

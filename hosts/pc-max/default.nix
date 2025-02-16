@@ -1,6 +1,8 @@
 {
   inputs,
   outputs,
+overlays,
+nixpkgs,
   ...
 }:
 {
@@ -11,9 +13,12 @@
     ../../modules/nvidia
   ];
 
+nixpkgs.config.allowUnfree = true;
+
   home-manager = {
+      useUserPackages = true;
     extraSpecialArgs = {
-      inherit inputs outputs;
+      inherit inputs outputs overlays;
     };
     users.mark = import ./home.nix;
   };

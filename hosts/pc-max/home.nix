@@ -1,11 +1,4 @@
-{
-  lib,
-  nur,
-  vim-plugins,
-  zjstatus,
-  ...
-}:
-{
+{overlays, lib, ...}: {
   imports = [
     ../../modules/cli.nix
     ../../modules/firefox
@@ -24,7 +17,20 @@
   nixpkgs = {
     config = {
       allowUnfree = true;
+allowUnfreePredicate =
+              pkg:
+              builtins.elem (lib.getName pkg) [
+                "zoom"
+                "unrar"
+                "codeium"
+                "terraform"
+                # browser extensions
+                "onepassword-password-manager"
+                "okta-browser-plugin"
+              ];
     };
+
+    overlays = overlays;
   };
 
   home = {
