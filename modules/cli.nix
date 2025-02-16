@@ -1,4 +1,4 @@
-{ pkgs, colorscheme, ... }:
+{ pkgs, ... }:
 {
   home.packages = with pkgs; [
     # CLI tools / Terminal facification
@@ -47,7 +47,6 @@
     };
     bat = {
       enable = true;
-      config.theme = colorscheme.bat-theme-name;
     };
     direnv = {
       enable = true;

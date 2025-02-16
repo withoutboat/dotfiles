@@ -47,8 +47,9 @@
       darwin,
       nixpkgs-firefox-darwin,
       mac-app-util,
-    }:
+    }@inputs:
     let
+      inherit (self) outputs;
       overlays = {
         # NOTE: Injecting colorscheme so that it is passed down all the imports
         _module.args = {
@@ -105,6 +106,7 @@
             overlays
             ./hosts/pc-max
           ];
+          specialArgs = { inherit inputs outputs; };
         };
       };
 

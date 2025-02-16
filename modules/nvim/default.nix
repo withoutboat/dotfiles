@@ -1,4 +1,4 @@
-{ pkgs, colorscheme, ... }:
+{ pkgs, ... }:
 let
   # Caveat: This requires Xcode.app installed on the system
   # https://github.com/NixOS/nixpkgs/pull/211321
@@ -7,11 +7,11 @@ let
 
   python_with_debugpy = pkgs.python3.withPackages (ps: with ps; [ debugpy ]);
 
-  # This sucks
-  # The codeium-nvim plugin works with specific version of the language server
-  # now anytime I update I will need to check if the lanague-server with what it works with
-  # and then update this accordingly.
 in
+# This sucks
+# The codeium-nvim plugin works with specific version of the language server
+# now anytime I update I will need to check if the lanague-server with what it works with
+# and then update this accordingly.
 {
   programs.neovim = {
     enable = true;
@@ -265,7 +265,7 @@ in
 
       # Programming: Database support
       vim-dotenv
-      vim-dadbod
+      #    vim-dadbod
       {
         plugin = vim-dadbod-ui;
         type = "lua";
@@ -278,7 +278,7 @@ in
           '';
       }
       vim-dadbod-completion
-      nvim-dadbod-ssh
+      #    nvim-dadbod-ssh
 
       # Programming: Testing
       {
@@ -443,7 +443,6 @@ in
 
     extraConfig = # vim
       ''
-        colorscheme ${colorscheme.vim-name}
         set shell=zsh
         luafile ${builtins.toString ./lua/base.lua}
       '';
