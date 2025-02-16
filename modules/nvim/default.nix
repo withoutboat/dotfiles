@@ -11,14 +11,6 @@ let
   # The codeium-nvim plugin works with specific version of the language server
   # now anytime I update I will need to check if the lanague-server with what it works with
   # and then update this accordingly.
-  codeium-server = pkgs.codeium.overrideAttrs (o: rec {
-    version = "1.20.9";
-    src = builtins.fetchurl {
-      url = "https://github.com/Exafunction/codeium/releases/download/language-server-v${version}/language_server_macos_x64.gz";
-      sha256 = "sha256:0c8gjx47ddi29lgzrziafx68q2y962lyy8agnaylnlic8jhaaqmg";
-    };
-
-  });
 in
 {
   programs.neovim = {
@@ -252,10 +244,6 @@ in
       {
         plugin = blink-cmp;
         type = "lua";
-        config = ''
-          local codeium_language_server_bin = "${codeium-server}/bin/codeium_language_server"
-           ${builtins.readFile ./lua/blink.lua};
-        '';
         optional = true;
       }
       {

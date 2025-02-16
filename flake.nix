@@ -9,10 +9,11 @@
     nur = {
       url = "github:nix-community/NUR";
     };
+
     # Applying the configuration happens from the .dotfiles directory so the
     # relative path is defined accordingly. This has potential of causing issues.
     vim-plugins = {
-      url = "path:/Users/nixypanda/.dotfiles/modules/nvim/plugins";
+      url = "path:./modules/nvim/plugins";
     };
     zjstatus = {
       url = "github:dj95/zjstatus";
@@ -62,8 +63,8 @@
               builtins.elem (lib.getName pkg) [
                 "zoom"
                 "unrar"
-                "codeium"
                 "terraform"
+                "codeium"
                 # browser extensions
                 "onepassword-password-manager"
                 "okta-browser-plugin"
@@ -85,7 +86,6 @@
             ./modules/firefox
             ./modules/fonts.nix
             ./modules/git
-            ./modules/kitty
             ./modules/nu
             ./modules/nvim
             ./modules/programming.nix
@@ -98,8 +98,8 @@
       home-macbook = {
         # Hack: Firefox does not work on mac so we have to depend on an overlay.
         nixpkgs.overlays = [ nixpkgs-firefox-darwin.overlay ];
-        home.homeDirectory = "/Users/nixypanda";
-        home.username = "nixypanda";
+        home.homeDirectory = "/Users/mark";
+        home.username = "mark";
         imports = [ mac-app-util.homeManagerModules.default ];
         xdg.configFile."nix/nix.conf".text = ''
           experimental-features = nix-command flakes
@@ -107,8 +107,8 @@
       };
 
       home-linux = {
-        home.homeDirectory = "/home/sherub";
-        home.username = "sherub";
+        home.homeDirectory = "/home/mark";
+        home.username = "mark";
         imports = [
           # Desktop Environment
           ./modules/linux/desktop-environment.nix
@@ -120,9 +120,7 @@
           ./modules/linux/picom
           ./modules/linux/plasma-browser-integration
           ./modules/linux/rofi
-          ./modules/linux/taffybar
           ./modules/linux/xidlehook
-          ./modules/linux/xmonad
         ];
       };
 
@@ -142,6 +140,11 @@
           ];
         };
 
+        pc-max = nixpkgs.lib.nixosSystem {
+          pkgs = nixpkgs.legacyPackages."x86_64-linux";
+          modules = [ ./hosts/pc-max ];
+        };
+
         srt-l02-sekhmet = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages."x86_64-darwin";
           modules = [
@@ -149,6 +152,10 @@
             home-macbook
           ];
         };
+      };
+
+      nixosConfigurations = {
+
       };
 
       darwinConfigurations."srt-l02-sekhmet" = darwin.lib.darwinSystem {

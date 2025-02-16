@@ -29,7 +29,6 @@
       ''
         ${builtins.readFile ./session_variables.zsh}
         ${builtins.readFile ./functions.zsh}
-        ${builtins.readFile ../../.secrets/env-vars.sh}
 
         bindkey -M vicmd 'k' history-beginning-search-backward
         bindkey -M vicmd 'j' history-beginning-search-forward

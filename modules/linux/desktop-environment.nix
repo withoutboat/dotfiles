@@ -1,9 +1,9 @@
 { pkgs, ... }:
 let
-  custom-browsermediacontrol = (import ../custom-programs/browser-media-control/default.nix) {
+  custom-browsermediacontrol = (import ../../custom-programs/browser-media-control/default.nix) {
     inherit pkgs;
   };
-  custom-weather-cli = (import ../custom-programs/weather-cli/default.nix) { inherit pkgs; };
+  custom-weather-cli = (import ../../custom-programs/weather-cli/default.nix) { inherit pkgs; };
 in
 {
   home.packages = with pkgs; [
@@ -32,7 +32,7 @@ in
     radeontop
 
     # Openvpn interop
-    gnome3.networkmanager-openvpn
+    networkmanager-openvpn
 
     # Screenshot utility
     scrot
@@ -42,11 +42,10 @@ in
 
     # System tray (Kind of a hack atm)
     # Need polybar to support this as a first class module
-    gnome3.nautilus
+    nautilus
     networkmanagerapplet
     nm-tray
     pasystray
-    psensor
 
     # Utility to open present directory (Only use it with xmonad to open
     # terminal in same directory)

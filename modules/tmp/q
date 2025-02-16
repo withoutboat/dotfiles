@@ -1,0 +1,28 @@
+{
+	programs.hyprland = {
+		enable = true;
+		nvidiaPatches = true;
+		xwayland.enable = true;
+	}
+
+	home.packages = [
+		(pkgs.waybar.overrideAttrs (oldAttrs: {
+   		 		mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+			})
+		)
+		pkgs.libnotify
+		pkgs.waybar
+		pkgs.mako
+		pkgs.swww
+		pkgs.wofi
+		pkgs.kitty
+	];
+
+	xdg.portal = {
+    		extraPortals = [pkgs.xdg-desktop-portal-wlr];
+    		config.hyprland = {
+      			default = ["wlr" "gtk"];
+    		};
+	};
+
+}

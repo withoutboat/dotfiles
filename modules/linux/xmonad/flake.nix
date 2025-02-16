@@ -2,10 +2,6 @@
   description = "XMonad Config";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    taffybar-flake = {
-      url = "github:nixypanda/taffybar";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     flake-utils = {
       url = "github:numtide/flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -17,7 +13,6 @@
       self,
       nixpkgs,
       flake-utils,
-      taffybar-flake,
       ...
     }:
     let
@@ -27,7 +22,6 @@
           xmonad-contrib
           xmonad-extras
           haskell-language-server
-          taffybar
         ];
     in
     flake-utils.lib.simpleFlake {

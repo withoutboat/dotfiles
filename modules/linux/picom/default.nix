@@ -5,7 +5,6 @@ in
 {
   services.picom = {
     enable = true;
-    experimentalBackends = true;
     backend = "glx";
     vSync = true;
 

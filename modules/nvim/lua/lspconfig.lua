@@ -136,15 +136,15 @@ require("lz.n").load({
 			settings = {
 				nixd = {
 					nixpkgs = {
-						expr = 'import (builtins.getFlake ("/Users/nixypanda/.dotfiles")).inputs.nixpkgs {}',
+						expr = 'import (builtins.getFlake ("/Users/mark/.dotfiles")).inputs.nixpkgs {}',
 					},
 					diagnostic = { suppress = { "sema-escaping-with" } },
 					options = {
 						nixos = {
-							expr = '(builtins.getFlake ("/Users/nixypanda/.dotfiles")).nixosConfigurations.nixos.options',
+							expr = '(builtins.getFlake ("/Users/mark/.dotfiles")).nixosConfigurations.nixos.options',
 						},
 						home_manager = {
-							expr = '(builtins.getFlake ("/Users/nixypanda/.dotfiles")).homeConfigurations."srt-l02-sekhmet".options',
+							expr = '(builtins.getFlake ("/Users/mark/.dotfiles")).homeConfigurations."srt-l02-sekhmet".options',
 						},
 					},
 				},

@@ -11,7 +11,6 @@
     windowManager.xmonad = {
       enable = true;
       enableContribAndExtras = true;
-      extraPackages = haskellPackages: with haskellPackages; [ taffybar ];
       config =
         pkgs.writeText "xmonad.hs" # haskell
           ''

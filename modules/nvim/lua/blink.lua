@@ -10,11 +10,6 @@ lz.load({
 		vim.cmd.packadd("codeium.nvim")
 	end,
 	after = function()
-		require("codeium").setup({
-			tools = {
-				language_server = codeium_language_server_bin,
-			},
-		})
 		require("blink.cmp").setup({
 			appearance = {
 				use_nvim_cmp_as_default = true,
