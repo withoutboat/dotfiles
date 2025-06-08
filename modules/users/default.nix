@@ -1,13 +1,11 @@
-users = 
-  users = {
-    withoutboat = {
-      isNormalUser = true;
-       extraGroups = [
-          "wheel"
-          "networkmanager"
-          "audio"
-       ];
-    };
+{ users.users = {
+     withoutboat = {
+       isNormalUser = true;
+        extraGroups = [
+           "wheel"
+           "networkmanager"
+           "audio"
+        ];
+     };
   };
-};
-
+}

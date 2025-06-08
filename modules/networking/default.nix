@@ -1,5 +1,4 @@
-networking = {
-    hostName = "withoutboat";
-    networkmanager.enable = true;
-};
+{ networking.hostName = "withoutboat";
+  networking.networkmanager.enable = true;
+}
 
