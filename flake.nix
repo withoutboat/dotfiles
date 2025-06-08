@@ -44,9 +44,9 @@
         mac-cero = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
+		        { nixpkgs.overlays = overlays; }
             ./hosts/mac-cero
           ];
-		      { nixpkgs.overlays = overlays; }
           specialArgs = { inherit inputs overlays; };
         };
       };
