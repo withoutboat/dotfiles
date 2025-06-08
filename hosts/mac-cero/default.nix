@@ -11,6 +11,6 @@
 
   home-manager = {
     useUserPackages = true;
-    users.mark = import ../../home.nix;
+    users.withoutboat = import ../../home.nix;
   };
 }
