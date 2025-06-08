@@ -9,8 +9,8 @@
     ../../systems/nixos
   ];
 
- # home-manager = {
- #   useUserPackages = true;
- #   users.mark = import ./home.nix;
- # };
+  home-manager = {
+    useUserPackages = true;
+    users.mark = import ./home.nix;
+  };
 }

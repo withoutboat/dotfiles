@@ -4,11 +4,11 @@
     ./modules/firefox
  #   ./modules/fonts.nix
     ./modules/git
- #   ./modules/nu
- #   ./modules/nvim
+    ./modules/nu
+    ./modules/nvim
     ./modules/programming.nix
- #   ./modules/system-management
- #   ./modules/zellij
+    ./modules/system-management
+    ./modules/zellij
     ./modules/zsh
   ];
 

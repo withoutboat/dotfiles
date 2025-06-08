@@ -6,13 +6,38 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nur = {
+      url = "github:nix-community/NUR";
+    };
+
+
+    # Applying the configuration happens from the .dotfiles directory so the
+    # relative path is defined accordingly. This has potential of causing issues.
+    vim-plugins = {
+      url = "path:/home/mark/.dotfiles/modules/nvim/plugins";
+    };
+    zjstatus = {
+      url = "github:dj95/zjstatus";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
   outputs =
     {
       self,
       home-manager,
       nixpkgs,
+      nur,
+      zjstatus,
     }@inputs:
+    let
+      overlays = [
+          nur.overlay
+          vim-plugins.overlay
+          (final: prev: { zjstatus = zjstatus.packages.${prev.system}.default; })
+        ];
+    in
     {
       nixosConfigurations = {
         mac-cero = nixpkgs.lib.nixosSystem {
@@ -20,7 +45,7 @@
           modules = [
             ./hosts/mac-cero
           ];
-          specialArgs = { inherit inputs; };
+          specialArgs = { inherit inputs overlays; };
         };
       };
 
