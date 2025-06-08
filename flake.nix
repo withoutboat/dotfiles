@@ -28,6 +28,7 @@
       self,
       home-manager,
       nixpkgs,
+      vim-plugins,
       nur,
       zjstatus,
     }@inputs:
@@ -45,6 +46,7 @@
           modules = [
             ./hosts/mac-cero
           ];
+		      { nixpkgs.overlays = overlays; }
           specialArgs = { inherit inputs overlays; };
         };
       };
