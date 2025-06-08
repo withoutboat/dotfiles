@@ -1,8 +1,8 @@
 {
   imports = [
-    ../modules/boot
-    ../modules/networking
-    ../modules/users
+    ../../modules/boot
+    ../../modules/networking
+    ../../modules/users
   ];
 
   nixpkgs.config.allowUnfree = true;
