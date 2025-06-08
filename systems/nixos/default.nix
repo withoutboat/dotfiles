@@ -3,11 +3,11 @@
   outputs,
 }:
 {
-  imports = [
-    ../modules/boot
-    ../modules/networking
-    ../modules/users
-  ];
+#  imports = [
+#    ../modules/boot
+#    ../modules/networking
+#    ../modules/users
+#  ];
 
   nixpkgs.config.allowUnfree = true;
 
