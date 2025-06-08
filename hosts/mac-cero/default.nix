@@ -1,5 +1,6 @@
 {
   inputs,
+  overlays.
   ...
 }:
 {
@@ -10,6 +11,9 @@
   ];
 
   home-manager = {
+    extraSpecialArgs = {
+      inherit inputs overlays;
+    };
     useUserPackages = true;
     users.withoutboat = import ../../home.nix;
   };
