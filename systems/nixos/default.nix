@@ -3,8 +3,9 @@
     ../../modules/boot
     ../../modules/networking
     ../../modules/users
-    ../../modules/zsh
   ];
+
+  programs.zsh.enable = true;
 
   nixpkgs.config.allowUnfree = true;
 
