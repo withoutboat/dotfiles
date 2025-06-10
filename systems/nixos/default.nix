@@ -3,6 +3,7 @@
     ../../modules/boot
     ../../modules/networking
     ../../modules/users
+    ../../modules/zsh
   ];
 
   nixpkgs.config.allowUnfree = true;
