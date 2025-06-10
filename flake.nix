@@ -56,7 +56,7 @@
           system = system;
           modules = [
 		       # { nixpkgs.overlays = overlays; }
-		        { nixpkgs = { overlays = overlays; inherit system; config = {system = system} }; }
+		        { nixpkgs = { overlays = overlays; inherit system; config = {system = system;}; }; }
             ./hosts/mac-cero
           ];
           specialArgs = { inherit system inputs outputs overlays; };
