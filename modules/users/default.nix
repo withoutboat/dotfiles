@@ -1,7 +1,7 @@
 { pkgs, config, ... }:
 { 
   sops.secrets.primary.neededForUsers = true;
-  users.mutableUser = false;
+  users.mutableUsers = false;
   
   users.users = {
     withoutboat = {
