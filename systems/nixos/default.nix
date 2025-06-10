@@ -15,7 +15,6 @@
   programs.zsh.enable = true;
 
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.system = system;
 
   security = {
     sudo.wheelNeedsPassword = false;
