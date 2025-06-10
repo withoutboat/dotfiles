@@ -47,11 +47,13 @@
           vim-plugins.overlay
           (final: prev: { zjstatus = zjstatus.packages.${prev.system}.default; })
         ];
+
+      system = "x86_64-linux"
     in
     {
       nixosConfigurations = {
         mac-cero = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
+          system = system;
           modules = [
 		        { nixpkgs.overlays = overlays; }
             ./hosts/mac-cero
