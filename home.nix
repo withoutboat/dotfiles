@@ -1,4 +1,4 @@
-{overlays, lib, ...}: {
+{ overlays, lib, ... }: {
   imports = [
     ./modules/cli.nix
     ./modules/firefox
@@ -29,7 +29,7 @@
                 "okta-browser-plugin"
               ];
     };
- #   overlays = overlays;
+    overlays = overlays;
   };
 
   home = {

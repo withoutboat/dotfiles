@@ -9,7 +9,8 @@
 
     nur = {
       url = "github:nix-community/NUR";
-    };
+      inputs.nixpkgs.follows = "nixpkgs";
+    }; 
 
 
     # Applying the configuration happens from the .dotfiles directory so the
