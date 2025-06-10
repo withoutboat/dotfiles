@@ -55,11 +55,13 @@
         mac-cero = nixpkgs.lib.nixosSystem {
           system = system;
           modules = [
-		        { nixpkgs.overlays = overlays; }
+		       # { nixpkgs.overlays = overlays; }
+		        { nixpkgs = { overlays = overlays; inherit system; }; }
             ./hosts/mac-cero
           ];
           specialArgs = { inherit system inputs outputs overlays; };
         };
       };
+
     };
 }
