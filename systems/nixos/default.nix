@@ -9,7 +9,7 @@
     ../../modules/networking
     ../../modules/users
     ../../modules/keyboard
-    ../../modules/sops
+#    ../../modules/sops
   ];
 
   programs.zsh.enable = true;
