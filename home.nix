@@ -13,7 +13,6 @@
     ./modules/chromium
     ./modules/telegram
     ./modules/age-keygen
-    ./modules/keyboard
   ];
 
   programs.home-manager.enable = true;

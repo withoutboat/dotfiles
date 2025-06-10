@@ -3,6 +3,7 @@
     ../../modules/boot
     ../../modules/networking
     ../../modules/users
+    ../../modules/keyboard
   ];
 
   programs.zsh.enable = true;
