@@ -3,5 +3,5 @@
     telegram = {
       enable = true;
     };
-  }
+  };
 }

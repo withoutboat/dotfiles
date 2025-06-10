@@ -3,5 +3,5 @@
     chromium = {
       enable = true;
     };
-  }
+  };
 }
