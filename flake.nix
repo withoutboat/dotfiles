@@ -48,7 +48,7 @@
           (final: prev: { zjstatus = zjstatus.packages.${prev.system}.default; })
         ];
 
-      system = "x86_64-linux"
+      system = "x86_64-linux";
     in
     {
       nixosConfigurations = {
