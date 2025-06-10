@@ -1,9 +1,10 @@
 {
-  system,
+  inputs,
   ...
 }:
 {
   imports = [
+    inputs.sops-nix.nixosModules.sops
     ../../modules/boot
     ../../modules/networking
     ../../modules/users

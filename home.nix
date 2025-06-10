@@ -1,5 +1,6 @@
-{ overlays, lib, system, ... }: {
+{ overlays, lib, ... }: {
   imports = [
+    inputs.sops-nix.homeManagerModules.sops
     ./modules/cli.nix
     ./modules/firefox
  #   ./modules/fonts.nix
@@ -21,7 +22,6 @@
 
   nixpkgs = {
     config = {
-      system = system;
       allowUnfree = true;
       allowUnfreePredicate =
               pkg:

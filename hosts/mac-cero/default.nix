@@ -2,19 +2,19 @@
   inputs,
   overlays,
   outputs,
-  system,
   ...
 }:
 {
   imports = [
     inputs.home-manager.nixosModules.home-manager
+    inputs.sops-nix.nixosModules.sops
     ./hardware-configuration.nix
     ../../systems/nixos
   ];
 
   home-manager = {
     extraSpecialArgs = {
-      inherit inputs outputs system overlays;
+      inherit inputs outputs overlays;
     };
     useUserPackages = true;
     users.withoutboat = import ../../home.nix;
