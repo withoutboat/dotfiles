@@ -1,4 +1,4 @@
-{ overlays, lib, ... }: {
+{ overlays, inputs, lib, ... }: {
   imports = [
     inputs.sops-nix.homeManagerModules.sops
     ./modules/cli.nix
