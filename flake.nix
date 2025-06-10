@@ -33,6 +33,8 @@
       zjstatus,
     }@inputs:
     let
+      inherit (self) outputs;
+
       overlays = [
           nur.overlay
           vim-plugins.overlay
@@ -47,7 +49,7 @@
 		        { nixpkgs.overlays = overlays; }
             ./hosts/mac-cero
           ];
-          specialArgs = { inherit inputs overlays; };
+          specialArgs = { inherit inputs outputs overlays; };
         };
       };
 
