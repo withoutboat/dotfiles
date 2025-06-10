@@ -10,6 +10,8 @@
     ./modules/system-management
     ./modules/zellij
     ./modules/zsh
+    ./modules/chromium
+    ./modules/telegram
   ];
 
   programs.home-manager.enable = true;
