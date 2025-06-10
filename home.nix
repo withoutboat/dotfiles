@@ -1,4 +1,4 @@
-{ overlays, lib, ... }: {
+{ overlays, lib, system, ... }: {
   imports = [
     ./modules/cli.nix
     ./modules/firefox
@@ -21,6 +21,7 @@
 
   nixpkgs = {
     config = {
+      system = system;
       allowUnfree = true;
       allowUnfreePredicate =
               pkg:

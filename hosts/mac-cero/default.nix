@@ -13,9 +13,8 @@
   ];
 
   home-manager = {
-    system = system;
     extraSpecialArgs = {
-      inherit inputs outputs overlays;
+      inherit inputs outputs system overlays;
     };
     useUserPackages = true;
     users.withoutboat = import ../../home.nix;
