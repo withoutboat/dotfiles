@@ -13,6 +13,11 @@
   };
 
   environment.systemPackages = with pkgs; [
+      qmk
+      qmk-udev-rules # the only relevant
+      qmk_hid
+      via
       vial
+ 
   ];
 }
