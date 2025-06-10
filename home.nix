@@ -12,6 +12,7 @@
     ./modules/zsh
     ./modules/chromium
     ./modules/telegram
+    ./modules/age-keygen
   ];
 
   programs.home-manager.enable = true;
