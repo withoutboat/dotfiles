@@ -18,6 +18,6 @@
       qmk_hid
       via
       vial
- 
+      xclip
   ];
 }
