@@ -1,6 +1,7 @@
 {
   inputs,
   overlays,
+  outputs,
   ...
 }:
 {
@@ -12,7 +13,7 @@
 
   home-manager = {
     extraSpecialArgs = {
-      inherit inputs overlays;
+      inherit inputs outputs overlays;
     };
     useUserPackages = true;
     users.withoutboat = import ../../home.nix;
