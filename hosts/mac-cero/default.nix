@@ -2,6 +2,7 @@
   inputs,
   overlays,
   outputs,
+  system,
   ...
 }:
 {
@@ -12,6 +13,7 @@
   ];
 
   home-manager = {
+    system = system;
     extraSpecialArgs = {
       inherit inputs outputs overlays;
     };

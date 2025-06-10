@@ -56,7 +56,7 @@
 		        { nixpkgs.overlays = overlays; }
             ./hosts/mac-cero
           ];
-          specialArgs = { inherit inputs outputs overlays; };
+          specialArgs = { inherit system inputs outputs overlays; };
         };
       };
     };
