@@ -2,7 +2,7 @@
 {
   sops = {
     defaultSopsFile = ../../secrets.yaml;
-    validateSopsFiles = true;
+    validateSopsFiles = false;
 
     age  = {
      sshKeyPaths = [ "/home/withoutboat/.ssh/id_ed25519" ];
