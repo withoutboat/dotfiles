@@ -11,4 +11,8 @@
     ]; # packages
   
   };
+
+  environment.systemPackages = with pkgs; [
+      vial
+  ];
 }
