@@ -37,7 +37,6 @@
       vim-plugins,
       nur,
       zjstatus,
-      sops-nix 
     }@inputs:
     let
       inherit (self) outputs;
