@@ -53,6 +53,5 @@
           specialArgs = { inherit inputs outputs overlays; };
         };
       };
-
     };
 }

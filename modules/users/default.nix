@@ -1,11 +1,13 @@
 { users.users = {
-     withoutboat = {
-       isNormalUser = true;
-        extraGroups = [
-           "wheel"
-           "networkmanager"
-           "audio"
-        ];
-     };
+    withoutboat = {
+     shell = pkgs.zsh;
+     isNormalUser = true;
+     initialPassword = "temp123";
+     extraGroups = [
+       "wheel"
+       "networkmanager"
+       "audio"
+     ];
+    };
   };
 }
