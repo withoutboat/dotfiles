@@ -6,7 +6,7 @@
   users.users = {
     withoutboat = {
      shell = pkgs.zsh;
-     hashedPasswordFile = config.sops.secret.primary.path;
+     hashedPasswordFile = config.sops.secrets.primary.path;
      isNormalUser = true;
      extraGroups = [
        "wheel"
