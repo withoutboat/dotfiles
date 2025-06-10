@@ -54,7 +54,6 @@
           system = "x86_64-linux";
           modules = [
 		        { nixpkgs.overlays = overlays; }
-            sops-nix.nixosModules.sops
             ./hosts/mac-cero
           ];
           specialArgs = { inherit inputs outputs overlays; };

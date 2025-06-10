@@ -4,6 +4,7 @@
     ../../modules/networking
     ../../modules/users
     ../../modules/keyboard
+    ../../modules/sops
   ];
 
   programs.zsh.enable = true;

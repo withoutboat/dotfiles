@@ -1,6 +1,21 @@
 { pkgs, ... }:
 {
-  home.packages = with pkgs; [
+  imports = [
+    sops-nix.nixosModules.sops
+  ];
+
+  environment.systemPackages = with pkgs; [
     sops
   ];
+
+  sops = {
+    defaultSopsFile = ../../secrets.yaml;
+    validateSopsFile = true;
+  };
+
+  age  = {
+    sshKeyPaths = [ "/home/withoutboat/.ssh/id_ed25519" ];
+    keyFile = "/var/lib/sops-nix/key.txt";
+    generateKey = true;
+  }
 }
