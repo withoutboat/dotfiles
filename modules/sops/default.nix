@@ -19,8 +19,8 @@
     };
 
     secrets = {
-      primary = {}
-    }
+      primary = {};
+    };
   };
 
   
