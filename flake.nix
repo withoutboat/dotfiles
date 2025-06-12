@@ -2,10 +2,13 @@
   description = "Home manager flake";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    flake-utils.url = "github:numtide/flake-utils";
 
     nur = {
       url = "github:nix-community/NUR";
@@ -66,6 +69,16 @@
           specialArgs = { inherit inputs outputs overlays; };
         };
       };
+
+      flake-utils.lib.eachDefaultSystem (system: rec {
+          pkgs = import nixpkgs {
+            inherit system;
+            overlays = [ agenix-rekey.overlays.default ];
+          };
+          devShells.default = pkgs.mkShell {
+            packages = [ pkgs.agenix-rekey ];
+          };
+        });
 
     };
 }
