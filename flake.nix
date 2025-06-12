@@ -46,6 +46,7 @@
       zjstatus,
       agenix,
       agenix-rekey,
+      flake-utils,
     }@inputs:
     let
       inherit (self) outputs;
@@ -69,16 +70,15 @@
           specialArgs = { inherit inputs outputs overlays; };
         };
       };
-    };
 
-   // flake-utils.lib.eachDefaultSystem (system: rec {
-        pkgs = import nixpkgs {
-          inherit system;
-          overlays = [ agenix-rekey.overlays.default ];
-        };
-        devShells.default = pkgs.mkShell {
-          packages = [ pkgs.agenix-rekey ];
-        };
-      });
-      
+      flake-utils.lib.eachDefaultSystem (system: rec {
+              pkgs = import nixpkgs {
+                inherit system;
+                overlays = [ agenix-rekey.overlays.default ];
+              };
+              devShells.default = pkgs.mkShell {
+                packages = [ pkgs.agenix-rekey ];
+              };
+            });
+    };
 }
