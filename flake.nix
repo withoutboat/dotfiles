@@ -8,8 +8,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    flake-utils.url = "github:numtide/flake-utils";
-
     nur = {
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -46,13 +44,13 @@
       zjstatus,
       agenix,
       agenix-rekey,
-      flake-utils,
     }@inputs:
     let
       inherit (self) outputs;
 
       overlays = [
-          nur.overlay
+          agenix-rekey.overlays.default
+          nur.overlays.default
           vim-plugins.overlay
           (final: prev: { zjstatus = zjstatus.packages.${prev.system}.default; })
         ];

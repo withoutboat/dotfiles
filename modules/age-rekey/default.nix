@@ -7,9 +7,4 @@
 
     # storageModel = "derivation";
   };
-
-  environment.systemPackages = with pkgs; [
-    agenix-rekey 
-  ];
-
 }
