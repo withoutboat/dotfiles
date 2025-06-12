@@ -75,9 +75,8 @@
         userFlake = self;
         nixosConfigurations = self.nixosConfigurations;
       };
-    };
 
-    flake-utils.lib.eachDefaultSystem = (system: rec {
+      flake-utils.lib.eachDefaultSystem = (system: rec {
               pkgs = import nixpkgs {
                 inherit system;
                 overlays = [ agenix-rekey.overlays.default ];
@@ -87,4 +86,5 @@
               };
             });
 
+    };
 }
