@@ -48,19 +48,21 @@
     let
       inherit (self) outputs;
 
+      supportedSystems = [ "x86_64-linux" ];
+      forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
+      nixpkgsFor = forAllSystems (system: import nixpkgs { inherit system; });
+
       overlays = [
           agenix-rekey.overlays.default
           nur.overlays.default
           vim-plugins.overlay
           (final: prev: { zjstatus = zjstatus.packages.${prev.system}.default; })
         ];
-
-      system = "x86_64-linux";
     in
     {
       nixosConfigurations = {
         mac-cero = nixpkgs.lib.nixosSystem {
-          system = system;
+          system = "x86_64-linux";
           modules = [
 		       { nixpkgs.overlays = overlays; }
             ./hosts/mac-cero
@@ -73,5 +75,19 @@
         userFlake = self;
         nixosConfigurations = self.nixosConfigurations;
       };
+
+      devShells = forAllSystems (
+        system:
+        let
+          pkgs = nixpkgsFor.${system};
+        in
+        {
+          default = pkgs.mkShell {
+            buildInputs = with pkgs; [
+              agenix-rekey               
+            ];
+          };
+        }
+      );
     };
 }
