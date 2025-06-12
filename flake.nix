@@ -48,16 +48,18 @@
     let
       inherit (self) outputs;
 
-      supportedSystems = [ "x86_64-linux" ];
-      forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
-      nixpkgsFor = forAllSystems (system: import nixpkgs { inherit system; });
-
       overlays = [
           agenix-rekey.overlays.default
           nur.overlays.default
           vim-plugins.overlay
           (final: prev: { zjstatus = zjstatus.packages.${prev.system}.default; })
         ];
+
+      supportedSystems = [ "x86_64-linux" ];
+      forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
+      nixpkgsFor = forAllSystems (system: import nixpkgs { inherit system; overlays = overlays; });
+
+      
     in
     {
       nixosConfigurations = {
