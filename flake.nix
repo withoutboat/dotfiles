@@ -12,11 +12,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     }; 
 
-    sops-nix = {
-      url = "github:mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    agenix = {
+            url = "github:ryantm/agenix";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
 
+    agenix-rekey = {
+            url = "github:oddlama/agenix-rekey"; 
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
 
     # Applying the configuration happens from the .dotfiles directory so the
     # relative path is defined accordingly. This has potential of causing issues.
@@ -37,7 +41,8 @@
       vim-plugins,
       nur,
       zjstatus,
-      sops-nix,
+      agenix,
+      agenix-rekey,
     }@inputs:
     let
       inherit (self) outputs;

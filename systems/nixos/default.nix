@@ -4,12 +4,13 @@
 }:
 {
   imports = [
-    inputs.sops-nix.nixosModules.sops
+    inputs.agenix.nixosModules.default
+    inputs.agenix-rekey.nixosModules.default
     ../../modules/boot
     ../../modules/networking
     ../../modules/users
     ../../modules/keyboard
-#    ../../modules/sops
+    ../../modules/age-rekey
   ];
 
   programs.zsh.enable = true;

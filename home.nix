@@ -1,6 +1,5 @@
 { overlays, inputs, lib, ... }: {
   imports = [
-    inputs.sops-nix.homeManagerModules.sops
     ./modules/cli.nix
     ./modules/firefox
  #   ./modules/fonts.nix
@@ -14,7 +13,6 @@
     ./modules/chromium
     ./modules/telegram
     ./modules/age-keygen
- #   ./modules/sops
   ];
 
   programs.home-manager.enable = true;
