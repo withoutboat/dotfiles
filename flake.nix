@@ -71,7 +71,7 @@
       };
     };
 
-    flake-utils.lib.eachDefaultSystem (system: rec {
+    flake-utils.lib.eachDefaultSystem system: rec {
         pkgs = import nixpkgs {
           inherit system;
           overlays = [ agenix-rekey.overlays.default ];
@@ -79,6 +79,6 @@
         devShells.default = pkgs.mkShell {
           packages = [ pkgs.agenix-rekey ];
         };
-      });
+      };
       
 }
