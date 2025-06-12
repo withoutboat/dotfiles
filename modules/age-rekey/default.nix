@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   age.rekey = {
     hostPubkey = "/etc/ssh/ssh_host_ed25519.pub";
@@ -6,4 +7,9 @@
 
     # storageModel = "derivation";
   };
+
+  environment.systemPackages = with pkgs; [
+    agenix-rekey 
+  ];
+
 }
