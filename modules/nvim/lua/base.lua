@@ -20,6 +20,9 @@ vim.o.expandtab = true
 -- Use terminal GUI colors
 vim.o.termguicolors = true
 
+-- Use clipboard
+vim.o.clipboard = "unnamedplus"
+
 -- -- INSERT -- is unnecessary anymore because the mode information is
 --  displayed in the statusline.
 vim.o.showmode = false

@@ -9,6 +9,7 @@
     ../../modules/networking
     ../../modules/users
     ../../modules/keyboard
+    ../../modules/amnezia
   ];
 
   programs.zsh.enable = true;

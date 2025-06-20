@@ -15,6 +15,7 @@
       playerctl
       xdg-utils
       pkgs.grimblast
+        wl-clipboard
     ];
   };
 
