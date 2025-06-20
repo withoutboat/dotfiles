@@ -1,21 +1,13 @@
 { pkgs, inputs, ... }:
 {
   sops = {
-    defaultSopsFile = ../secrets.yaml;
-    validateSopsFiles = false;
+    defaultSopsFile = ../secrets/system.yaml;
+    validateSopsFiles = true;
 
-    age  = {
-     sshKeyPaths = [ "/home/withoutboat/.ssh/id_ed25519" ];
-     keyFile = "/var/lib/sops-nix/key.txt";
-     generateKey = true;
-    };
-
-    secrets = {
-      primary = {};
+    age = {
+      sshKeyPaths = [ "/home/withoutboat/.ssh/id_ed25519" ];
+      keyFile = "/var/lib/sops-nix/key.txt";
+      generateKey = true;
     };
   };
-
-  
-
-  
 }

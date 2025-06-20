@@ -10,8 +10,13 @@
     ../../modules/users
     ../../modules/keyboard
     ../../modules/amnezia
+    ../../modules/sops
   ];
+    
 
+# just testing
+    sops.secrets.system = {};
+    
   programs.zsh.enable = true;
 
   nixpkgs.config.allowUnfree = true;
