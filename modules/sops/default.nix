@@ -1,7 +1,7 @@
 { pkgs, inputs, ... }:
 {
   sops = {
-    defaultSopsFile = ../secrets/system.yaml;
+    defaultSopsFile = ../../secrets/system.yaml;
     validateSopsFiles = true;
 
     age = {
