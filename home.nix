@@ -40,5 +40,5 @@
     username = "withoutboat";
     homeDirectory = "/home/withoutboat";
     stateVersion = "24.11";
-  };
+    };
 }
