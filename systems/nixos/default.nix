@@ -15,7 +15,7 @@
     
 
 # just testing
-    sops.secrets.system = {};
+    sops.secrets.withoutboat_password = {};
     
   programs.zsh.enable = true;
 

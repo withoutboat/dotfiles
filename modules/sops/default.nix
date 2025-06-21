@@ -5,9 +5,7 @@
     validateSopsFiles = true;
 
     age = {
-      sshKeyPaths = [ "/home/withoutboat/.ssh/id_ed25519" ];
-      keyFile = "/var/lib/sops-nix/key.txt";
-      generateKey = true;
+      keyFile = "/home/withoutbot/.config/sops/age/keys.txt";
     };
   };
 }
