@@ -1,5 +1,5 @@
 {
-  description = "ZaneyOS";
+  description = "withoutboatOs";
 
   inputs = {
     home-manager = {
@@ -19,8 +19,8 @@
     ...
   } @ inputs: let
     system = "x86_64-linux";
-    host = "zaneyos-oem";
-    profile = "vm";
+    host = "mac-cero";
+    profile = "intel";
     username = "dwilliams";
   in {
     nixosConfigurations = {
