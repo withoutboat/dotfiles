@@ -4,11 +4,11 @@
   ];
 
   sops = {
-    defaultSopsFile = ../../secrets/system.yaml;
+    defaultSopsFile = ../../../secrets/system.yaml;
     validateSopsFiles = true;
 
     age = {
-      sshKeyPaths = ["/entrypoint/sops"];
+      sshKeyPaths = ["/home/withoutboat/entrypoint/sops"];
     };
   };
 }

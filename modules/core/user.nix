@@ -23,6 +23,25 @@ in {
       };
     };
   };
+
+  sops.secrets."ssh_private_key_${username}" = {
+    owner = username;
+    mode = "0600";
+    path = "/home/${username}/.ssh/id_ed25519";
+    sopsFile = ../../secrets/ssh_keys.yaml;
+    key = "ssh_private_key";
+  };
+
+  systemd.user.services."${username}-ssh-add-config-ssh-private-key" = {
+    wantedBy = ["default.target"];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.openssh}/bit/ssh-add /home/${username}/.ssh/id_ed25519";
+      Environment = "SSH_AUTH_SOCK=%t/ssh-agent";
+    };
+    after = ["ssh-agent.service"];
+  };
+
   users.mutableUsers = true;
   users.users.${username} = {
     isNormalUser = true;
