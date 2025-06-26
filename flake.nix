@@ -18,74 +18,20 @@
     nix-flatpak,
     ...
   } @ inputs: let
-    system = "x86_64-linux";
     host = "mac-cero";
-    profile = "intel";
-    username = "dwilliams";
+    username = "withoutboat";
   in {
     nixosConfigurations = {
-      amd = nixpkgs.lib.nixosSystem {
-        inherit system;
+      mac-cero = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
         specialArgs = {
           inherit inputs;
           inherit username;
           inherit host;
-          inherit profile;
+          profile = "mac-cero";
         };
         modules = [
-          ./profiles/amd
-          nix-flatpak.nixosModules.nix-flatpak
-        ];
-      };
-      nvidia = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {
-          inherit inputs;
-          inherit username;
-          inherit host;
-          inherit profile;
-        };
-        modules = [
-          ./profiles/nvidia
-          nix-flatpak.nixosModules.nix-flatpak
-        ];
-      };
-      nvidia-laptop = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {
-          inherit inputs;
-          inherit username;
-          inherit host;
-          inherit profile;
-        };
-        modules = [
-          ./profiles/nvidia-laptop
-          nix-flatpak.nixosModules.nix-flatpak
-        ];
-      };
-      intel = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {
-          inherit inputs;
-          inherit username;
-          inherit host;
-          inherit profile;
-        };
-        modules = [
-          ./profiles/intel
-          nix-flatpak.nixosModules.nix-flatpak
-        ];
-      };
-      vm = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {
-          inherit inputs;
-          inherit username;
-          inherit host;
-          inherit profile;
-        };
-        modules = [
-          ./profiles/vm
+          ./hosts/mac-cero
           nix-flatpak.nixosModules.nix-flatpak
         ];
       };

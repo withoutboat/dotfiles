@@ -13,6 +13,7 @@ in {
     ./fonts.nix
     ./hardware.nix
     ./network.nix
+    ./sops.nix
     ./nfs.nix
     ./nh.nix
     ./packages.nix
