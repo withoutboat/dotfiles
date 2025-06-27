@@ -32,6 +32,14 @@ in {
     key = "ssh_private_key";
   };
 
+  sops.secrets."ssh_public_key_${username}" = {
+    owner = username;
+    mode = "0600";
+    path = "/home/${username}/.ssh/id_ed25519.pub";
+    sopsFile = ../../secrets/ssh_keys.yaml;
+    key = "ssh_public_key";
+  };
+
   systemd.user.services."${username}-ssh-add-config-ssh-private-key" = {
     wantedBy = ["default.target"];
     serviceConfig = {
