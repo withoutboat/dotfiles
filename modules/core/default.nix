@@ -34,7 +34,6 @@ in {
     ./user.nix
     ./virtualisation.nix
     ./xserver.nix
-    ./wg.nix
     inputs.stylix.nixosModules.stylix
   ];
 }

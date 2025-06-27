@@ -1,47 +1,47 @@
 {
   pkgs,
   host,
-  options,
   config,
   ...
-}: let
-  sopsFile = ../../secrets/wg.yaml;
-in {
+}: {
   sops = {
     secrets = {
-      "wg:private_key" = {
-        inherit sopsFile;
-        key = "private_key";
-      };
-      "wg:preshared_key" = {
-        inherit sopsFile;
-        key = "preshared_key";
+      "wg0.conf" = {
+        sopsFile = ../../secrets/wg0.conf;
+        mode = "0400";
+        owner = "root";
+        format = "binary";
       };
     };
   };
 
-  networking.wg-quick.interfaces = {
-    wg0 = {
-      address = ["10.8.1.16/32"];
-      privateKeyFile = config.sops.secrets."wg:private_key".path;
-      dns = ["1.1.1.1" "1.0.0.1"];
-
-      peers = [
-        {
-          publicKey = "KugBNJzEl9dRNt6CUyuh9qcmEiIgiaHaXD/K6TSoanY=";
-          presharedKeyFile = config.sops.secrets."wg:preshared_key".path;
-          allowedIPs = ["0.0.0.0/0" "::/0"];
-          endpoint = "38.180.215.214:40633";
-          persistentKeepalive = 25;
-        }
-      ];
+  services.resolved.enable = true;
+  systemd.services.nm-wireguard-import = {
+    description = "Import and activate WireGuard (wg0) via NetworkManager";
+    after = ["network.target" "sops-nix.service"];
+    requires = ["sops-nix.service"];
+    wantedBy = ["multi-user.target"];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
     };
+    script = ''
+      set -e
+      if ! nmcli connection show wg0 &>/dev/null; then
+        nmcli connection import type wireguard file ${config.sops.secrets."wg0.conf".path}
+      fi
+      nmcli connection up wg0 || true
+      nmcli connection modify wg0 connection.autoconnect yes
+    '';
   };
 
   networking = {
     hostName = "${host}";
-    networkmanager.enable = true;
-    timeServers = options.networking.timeServers.default ++ ["pool.ntp.org"];
+    networkmanager = {
+      enable = true;
+      dns = "systemd-resolved";
+    };
+    #   timeServers = options.networking.timeServers.default ++ ["pool.ntp.org"];
     firewall = {
       enable = true;
       allowedTCPPorts = [
