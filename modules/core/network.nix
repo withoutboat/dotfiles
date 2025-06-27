@@ -30,7 +30,7 @@ in {
       RemainAfterExit = true;
     };
     script = ''
-      mkdri -p /etc/wireguard
+      mkdir -p /etc/wireguard
       install -m 600 -o root -g root ${config.sops.secrets."wg0.conf".path} /etc/wireguard/${wgInterface}.conf
     '';
   };
