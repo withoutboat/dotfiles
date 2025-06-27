@@ -6,13 +6,7 @@ in {
       "wg:private_key" = {
         inherit sopsFile;
       };
-      "wg:public_key" = {
-        inherit sopsFile;
-      };
       "wg:preshared_key" = {
-        inherit sopsFile;
-      };
-      "wg:endpoint" = {
         inherit sopsFile;
       };
     };
@@ -25,10 +19,10 @@ in {
 
       peers = [
         {
-          publicKye = builtins.readFile config.sops.secrets."wg:public_key".path;
+          publicKye = "KugBNJzEl9dRNt6CUyuh9qcmEiIgiaHaXD/K6TSoanY=";
           presharedKeyFile = config.sops.secrets."wg:preshared_key".path;
           allowedIPs = ["0.0.0.0/0" "::/0"];
-          endpoint = builtins.readFile config.sops.secrets."wg:endpoint".path;
+          endpoint = "38.180.215.214:40633";
           persistentKeepalive = 25;
         }
       ];

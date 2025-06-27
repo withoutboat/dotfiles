@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  pubKey = "${config.home.homeDirectory}/entrypoint/sops.pub";
+  sshKey = "${config.home.homeDirectory}/entrypoint/sops";
   destDir = "${config.home.homeDirectory}/.config/sops/age";
   destKey = "${destDir}/keys.txt";
   sshToAgeBin = "${pkgs.ssh-to-age}/bin/ssh-to-age";
@@ -23,13 +23,13 @@ in {
       exit 1
     fi
 
-    if [ ! -f "${pubKey}" ]; then
-      echo "SSH public key not found at ${pubKey}, skipping age key generation."
+    if [ ! -f "${sshKey}" ]; then
+      echo "SSH public key not found at ${sshKey}, skipping age key generation."
       exit 0
     fi
 
     mkdir -p "${destDir}"
-    cat "${pubKey}" | "${sshToAgeBin}" > "${destKey}"
+    "${sshToAgeBin}" -private-key -i ${sshKey} > "${destKey}"
     chmod 600 "${destKey}"
   '';
 }

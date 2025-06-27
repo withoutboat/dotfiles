@@ -12,6 +12,10 @@ in {
   imports =
     [
       waybarChoice
+      ./scripts
+      ./rofi
+      ./yazi
+      ./zsh
       ./age-keygen.nix
       ./wlogout
       ./amfora.nix
@@ -32,9 +36,7 @@ in {
       ./kitty.nix
       ./lazygit.nix
       ./nvf.nix
-      ./rofi
       ./qt.nix
-      ./scripts
       ./starship.nix
       ./starship-ddubs-1.nix
       ./stylix.nix
@@ -43,9 +45,7 @@ in {
       ./telegram.nix
       ./virtmanager.nix
       ./xdg.nix
-      ./yazi
       ./zoxide.nix
-      ./zsh
     ]
     ++ (
       if vscodeEnable
@@ -77,11 +77,7 @@ in {
     defaultSopsFile = ../../secrets/wg.yaml;
     validateSopsFiles = true;
     age = {
-      sshKeyPaths = ["/home/withoutboat/entrypoint/sops"];
+      keyFile = "/home/withoutboat/.config/sops/age/keys.txt";
     };
-    #   secrets.test = {
-    #     key = "endpoint";
-    #     path = "%r/test.txt";
-    #   };
   };
 }
