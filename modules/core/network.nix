@@ -3,7 +3,10 @@
   host,
   config,
   ...
-}: {
+}: let
+  amneziawgSecret = config.sops.secrets."wgO.conf".path;
+  wgInterface = "amneziawg";
+in {
   sops = {
     secrets = {
       "wg0.conf" = {
@@ -16,22 +19,17 @@
   };
 
   services.resolved.enable = true;
-  systemd.services.nm-wireguard-import = {
-    description = "Import and activate WireGuard (wg0) via NetworkManager";
-    after = ["network.target" "sops-nix.service"];
-    requires = ["sops-nix.service"];
+
+  systemd.services.amneziawg-config = {
+    description = "Install AmneziaWG WireGuard configuration";
     wantedBy = ["multi-user.target"];
+    before = ["wg-quick-${wgInterface}.service"];
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = true;
     };
     script = ''
-      set -e
-      if ! nmcli connection show wg0 &>/dev/null; then
-        nmcli connection import type wireguard file ${config.sops.secrets."wg0.conf".path}
-      fi
-      nmcli connection up wg0 || true
-      nmcli connection modify wg0 connection.autoconnect yes
+      install -m 600 -o root -g root ${amneziawgSecret} /etc/wireguard/${wgInterface}.conf
     '';
   };
 
@@ -55,9 +53,13 @@
       allowedUDPPorts = [
         59010
         59011
+        51820
       ];
     };
   };
+  networking.wg-quick.interfaces.${wgInterface} = {
+    autostart = true;
+  };
 
-  environment.systemPackages = with pkgs; [networkmanagerapplet];
+  environment.systemPackages = with pkgs; [networkmanagerapplet wireguard-tools];
 }
