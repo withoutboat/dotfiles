@@ -12,6 +12,7 @@ in {
   imports =
     [
       waybarChoice
+      ./age-keygen.nix
       ./wlogout
       ./amfora.nix
       ./bash.nix
@@ -74,13 +75,13 @@ in {
 
   sops = {
     defaultSopsFile = ../../secrets/wg.yaml;
+    validateSopsFiles = true;
     age = {
-      sshKeyPaths = ["/home/withoutboat/personal/entrypoint/sops"];
+      sshKeyPaths = ["/home/withoutboat/entrypoint/sops"];
     };
-    secrets.test = {
-      sopsFile = ../../secrets/wg.yaml;
-      key = "entrypoint";
-      paht = "%r/test.txt";
-    };
+    #   secrets.test = {
+    #     key = "endpoint";
+    #     path = "%r/test.txt";
+    #   };
   };
 }
