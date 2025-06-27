@@ -20,9 +20,7 @@
 
   outputs = {
     nixpkgs,
-    home-manager,
     nix-flatpak,
-    sops-nix,
     ...
   } @ inputs: let
     host = "mac-cero";

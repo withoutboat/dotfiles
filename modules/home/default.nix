@@ -72,10 +72,15 @@ in {
       else []
     );
 
-  # sops = {
-  #   defaultSopsFile = ../../secrets/wg.yaml;
-  #   age = {
-  #     sshKeyPaths = ["/home/withoutboat/personal/entrypoint/sops"];
-  #   };
-  # };
+  sops = {
+    defaultSopsFile = ../../secrets/wg.yaml;
+    age = {
+      sshKeyPaths = ["/home/withoutboat/personal/entrypoint/sops"];
+    };
+    secrets.test = {
+      sopsFile = ../../secrets/wg.yaml;
+      key = "entrypoint";
+      paht = "%r/test.txt";
+    };
+  };
 }
