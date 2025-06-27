@@ -1,5 +1,5 @@
 {
-  description = "withoutboatOs";
+  description = "withoutboatOss";
 
   inputs = {
     home-manager = {

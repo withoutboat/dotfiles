@@ -11,6 +11,8 @@
 in {
   imports =
     [
+      waybarChoice
+      ./wlogout
       ./amfora.nix
       ./bash.nix
       ./bashrc-personal.nix
@@ -37,9 +39,8 @@ in {
       ./stylix.nix
       ./swappy.nix
       ./swaync.nix
+      ./telegram.nix
       ./virtmanager.nix
-      waybarChoice
-      ./wlogout
       ./xdg.nix
       ./yazi
       ./zoxide.nix
@@ -70,4 +71,11 @@ in {
       then [./alacritty.nix]
       else []
     );
+
+  # sops = {
+  #   defaultSopsFile = ../../secrets/wg.yaml;
+  #   age = {
+  #     sshKeyPaths = ["/home/withoutboat/personal/entrypoint/sops"];
+  #   };
+  # };
 }
