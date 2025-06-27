@@ -4,7 +4,6 @@
   config,
   ...
 }: let
-  amneziawgSecret = config.sops.secrets."wgO.conf".path;
   wgInterface = "amneziawg";
 in {
   sops = {
@@ -24,12 +23,15 @@ in {
     description = "Install AmneziaWG WireGuard configuration";
     wantedBy = ["multi-user.target"];
     before = ["wg-quick-${wgInterface}.service"];
+    after = ["sops-nix.service"];
+    requires = ["sops-nix.service"];
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = true;
     };
     script = ''
-      install -m 600 -o root -g root ${amneziawgSecret} /etc/wireguard/${wgInterface}.conf
+      mkdri -p /etc/wireguard
+      install -m 600 -o root -g root ${config.sops.secrets."wg0.conf".path} /etc/wireguard/${wgInterface}.conf
     '';
   };
 
@@ -57,7 +59,9 @@ in {
       ];
     };
   };
+
   networking.wg-quick.interfaces.${wgInterface} = {
+    configFile = "/etc/wireguard/${wgInterface}.conf";
     autostart = true;
   };
 
