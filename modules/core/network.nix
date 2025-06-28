@@ -13,9 +13,6 @@
 
   services.resolved.enable = true;
 
-  boot.extraModulePackages = with pkgs; [amneziawg];
-  boot.kernelModules = ["amneziawg"];
-
   environment.systemPackages = with pkgs; [
     networkmanagerapplet
   ];
