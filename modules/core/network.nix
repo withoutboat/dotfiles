@@ -40,7 +40,7 @@
     networkmanager.dns = "systemd-resolved";
     nat = {
       enable = true;
-      externalInterface = "";
+      externalInterface = "wlp4s0";
       internalInterfaces = ["amneziawg0"];
     };
     firewall = {
