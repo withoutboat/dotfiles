@@ -5,10 +5,12 @@
   ...
 }: let
   wgInterface = "amneziawg";
+  secretName = "wg0.conf";
+  secretPath = config.sops.secrets."${secretName}".path;
 in {
   sops = {
     secrets = {
-      "wg0.conf" = {
+      ${secretName} = {
         sopsFile = ../../secrets/wg0.conf;
         mode = "0400";
         owner = "root";
@@ -20,18 +22,30 @@ in {
   services.resolved.enable = true;
 
   systemd.services.amneziawg-config = {
-    description = "Install AmneziaWG WireGuard configuration";
+    description = "Install AmneziaWG WireGuard configuration (with max debugging)";
     wantedBy = ["multi-user.target"];
     before = ["wg-quick-${wgInterface}.service"];
-    after = ["sops-nix.service"];
-    requires = ["sops-nix.service"];
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = true;
     };
     script = ''
-      mkdir -p /etc/wireguard
-      install -m 600 -o root -g root ${config.sops.secrets."wg0.conf".path} /etc/wireguard/${wgInterface}.conf
+      set -x
+
+      # Check secret path
+      if [ -e "${secretPath}" ]; then
+        echo "[$(date)] Secret exists at: ${secretPath}"
+      else
+        echo "[$(date)] ERROR: Secret missing at: ${secretPath}"
+        ls -l $(dirname "${secretPath}")
+        exit 1
+      fi
+
+      # Ensure /etc/wireguard exists
+      mkdir -pv /etc/wireguard
+      # Install config
+      install -v -m 600 -o root -g root "${secretPath}" /etc/wireguard/${wgInterface}.conf
+
     '';
   };
 
