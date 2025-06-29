@@ -12,11 +12,10 @@
     path = "/etc/amnezia/amneziawg.conf";
   };
 
-  services.resolved.enable = true;
-
   environment.systemPackages = with pkgs; [
     networkmanagerapplet
     wireguard-tools
+    openresolv
   ];
 
   #  systemd.services.amneziawg-up = {
@@ -33,7 +32,7 @@
   networking = {
     hostName = "${host}";
     networkmanager.enable = true;
-    networkmanager.dns = "systemd-resolved";
+    networkmanager.dns = "none";
     nat = {
       enable = true;
       externalInterface = "wlp4s0";
