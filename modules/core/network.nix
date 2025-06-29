@@ -9,27 +9,26 @@
     mode = "0400";
     owner = "root";
     format = "binary";
+    path = "/etc/amnezia/amneziawg.conf";
   };
 
   services.resolved.enable = true;
 
   environment.systemPackages = with pkgs; [
     networkmanagerapplet
+    wireguard-tools
   ];
 
-  systemd.services.amneziawg-setup = {
-    description = "Setup AmneziaWG Kernel Module with config";
-    wantedBy = ["multi-user.target"];
-    after = ["network-online.target"];
-    serviceConfig = {
-      Type = "oneshot";
-      RemainAfterExit = true;
-      ExecStart = ''
-        # Adjust the config path as necessary
-        cat ${config.sops.secrets.amneziawg.path} > /dev/amneziawg
-      '';
-    };
-  };
+  #  systemd.services.amneziawg-up = {
+  #    description = "Bring up AmneziaWG tunnel";
+  #    wantedBy = ["multi-user.target"];
+  #    after = ["install-amneziawg-conf.service"];
+  #    serviceConfig = {
+  #      Type = "oneshot";
+  #      ExecStart = "${pkgs.amneziawg-tools}/bin/awg-quick up /etc/amnezia/amneziawg0.conf";
+  #      RemainAfterExit = true;
+  #    };
+  #  };
 
   networking = {
     hostName = "${host}";
@@ -38,7 +37,7 @@
     nat = {
       enable = true;
       externalInterface = "wlp4s0";
-      internalInterfaces = ["amneziawg0"];
+      internalInterfaces = ["amneziawg"];
     };
     firewall = {
       enable = true;
