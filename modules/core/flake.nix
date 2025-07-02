@@ -10,16 +10,23 @@
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
     stylix,
     nix-flatpak,
+    sops-nix,
     ...
   }: {
     nixosModules.default = {
       imports = [
         stylix.nixosModules.stylix
+        sops-nix.nixosModules.sops
         nix-flatpak.nixosModules.nix-flatpak
         ./flatpak.nix
         ./stylix.nix
