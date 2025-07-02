@@ -12,7 +12,7 @@
 
     # Mac-cero as a module source
     mac-cero = {
-      url = "./hosts/mac-cero";
+      url = "path:./hosts/mac-cero";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

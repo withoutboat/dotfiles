@@ -7,20 +7,8 @@
   };
 
   outputs = {nix-flatpak, ...}: {
-    nixosModules.default = {pkgs}: {
-      imports = [nix-flatpak.nixosModules.nix-flatpak];
-
-      xdg.portal = {
-        enable = true;
-        extraPortals = [pkgs.xdg-desktop-portal-hyprland];
-        configPackages = [pkgs.hyprland];
-      };
-
-      services.flatpak.enable = true;
-
-      nix-flatpak.packages = [
-        "flathub:app/org.mozilla.firefox/x86_64/stable"
-      ];
+    nixosModules.default = {
+      imports = [nix-flatpak.nixosModules.nix-flatpak ./tmp.nix];
     };
 
     # expose nix-flatpak if you want to re-use it elsewhere
