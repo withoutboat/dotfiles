@@ -4,9 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    inputs = {
-      nix-flatpak.url = "github:gmodena/nix-flatpak?ref=latest";
-    };
+    nix-flatpak.url = "github:gmodena/nix-flatpak?ref=latest";
 
     stylix = {
       url = "github:danth/stylix";

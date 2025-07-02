@@ -69,18 +69,18 @@
     },
     "core": {
       "inputs": {
-        "flatpak": "flatpak",
+        "nix-flatpak": "nix-flatpak",
         "nixpkgs": [
           "nixpkgs"
         ],
         "stylix": "stylix"
       },
       "locked": {
-        "path": "modules/core",
+        "path": "./modules/core",
         "type": "path"
       },
       "original": {
-        "path": "modules/core",
+        "path": "./modules/core",
         "type": "path"
       },
       "parent": []
@@ -173,26 +173,6 @@
         "repo": "flake-utils",
         "type": "github"
       }
-    },
-    "flatpak": {
-      "inputs": {
-        "nix-flatpak": "nix-flatpak",
-        "nixpkgs": [
-          "core",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "path": "./flatpak",
-        "type": "path"
-      },
-      "original": {
-        "path": "./flatpak",
-        "type": "path"
-      },
-      "parent": [
-        "core"
-      ]
     },
     "fromYaml": {
       "flake": false,

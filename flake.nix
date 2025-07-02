@@ -6,7 +6,7 @@
 
     # Define core at the root level
     core = {
-      url = "path:modules/core";
+      url = "path:./modules/core";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
