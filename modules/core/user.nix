@@ -4,6 +4,7 @@
   username,
   host,
   profile,
+  sops-nix,
   ...
 }: let
   inherit (import ../../hosts/${host}/variables.nix) gitUsername;
@@ -13,7 +14,7 @@ in {
 
   home-manager = {
     sharedModules = [
-      inputs.sops-nix.homeManagerModules.sops
+      sops-nix.homeManagerModules.sops
     ];
     useUserPackages = true;
     useGlobalPkgs = false;
