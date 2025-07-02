@@ -1,0 +1,9 @@
+keys:
+  - &withoutboat age17k7jvvr3vwxugvau3py22vfg08t3r0v9jdh7flrn63fjuw5vmajsymlz0u
+
+creation_rules:
+  - path_regex: ^secrets/.*$
+    age: *withoutboat
+    key_groups:
+      - age:
+          - *withoutboat
