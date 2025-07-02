@@ -4,26 +4,26 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    stylix = {
-      url = "github:danth/stylix";
-      inputs.nixpkgs.follows = "nixpkgs";
+    inputs = {
+      nix-flatpak.url = "github:gmodena/nix-flatpak?ref=latest";
     };
 
-    flatpak = {
-      url = "path:./flatpak";
+    stylix = {
+      url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
   outputs = {
     stylix,
-    flatpak,
+    nix-flatpak,
     ...
   }: {
     nixosModules.default = {config, ...}: {
       imports = [
         stylix.nixosModules.stylix
-        flatpak.nixosModules.default
+        nix-flatpak.nixosModules.nix-flatpak
+        ./flatpak.nix
         ./stylix.nix
         ./sops.nix
         ./doas.nix
