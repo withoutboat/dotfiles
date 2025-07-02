@@ -10,9 +10,10 @@
     configPackages = [pkgs.hyprland];
   };
 
-  services.flatpak.enable = true;
-
-  nix-flatpak.packages = [
-    "flathub:app/org.mozilla.firefox/x86_64/stable"
-  ];
+  services.flatpak = {
+    enable = true;
+    packages = [
+      "flathub:app/org.mozilla.firefox/x86_64/stable"
+    ];
+  };
 }

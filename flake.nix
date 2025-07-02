@@ -48,10 +48,10 @@
 
       modules = [
         # Core modules
+        mac-cero.nixosModules.default
         core.nixosModules.default
 
         # Import mac-cero modules
-        mac-cero.nixosModules.default
 
         # Intel profile
         ./profiles/intel

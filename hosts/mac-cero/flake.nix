@@ -11,13 +11,8 @@
   };
 
   outputs = {sops-nix, ...}: {
-    # Expose modules for the root flake to use
     nixosModules = {
-      hardware = import ./hardware.nix;
-      packages = import ./host-packages.nix;
-
-      # Default module that combines everything
-      default = {...}: {
+      default = {
         imports = [
           sops-nix.nixosModules.sops
           ./hardware.nix
