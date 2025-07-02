@@ -19,7 +19,7 @@
     nix-flatpak,
     ...
   }: {
-    nixosModules.default = {config, ...}: {
+    nixosModules.default = {
       imports = [
         stylix.nixosModules.stylix
         nix-flatpak.nixosModules.nix-flatpak
@@ -34,11 +34,12 @@
         ./nh.nix
         ./packages.nix
         ./printing.nix
-        (
-          if config.host.displayManager == "tui"
-          then ./greetd.nix
-          else ./sddm.nix
-        )
+        ./sddm.nix
+        # (
+        #   if config.host.displayManager == "tui"
+        #   then ./greetd.nix
+        #   else ./sddm.nix
+        # )
         ./security.nix
         ./services.nix
         ./steam.nix
