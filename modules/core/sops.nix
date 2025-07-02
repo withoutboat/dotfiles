@@ -3,7 +3,7 @@
     sops
   ];
 
-  sops = {
+  services.sops = {
     defaultSopsFile = ../../../secrets/system.yaml;
     validateSopsFiles = true;
 
