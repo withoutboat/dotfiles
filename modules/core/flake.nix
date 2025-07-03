@@ -21,38 +21,42 @@
     sops-nix,
     ...
   }: {
-    nixosModules.default = {
-      imports = [
-        stylix.nixosModules.stylix
-        sops-nix.nixosModules.sops
-        nix-flatpak.nixosModules.nix-flatpak
-        ./flatpak.nix
-        ./stylix.nix
-        ./sops.nix
-        ./doas.nix
-        ./fonts.nix
-        ./hardware.nix
-        ./network.nix
-        ./nfs.nix
-        ./nh.nix
-        ./packages.nix
-        ./printing.nix
-        ./sddm.nix
-        # (
-        #   if config.host.displayManager == "tui"
-        #   then ./greetd.nix
-        #   else ./sddm.nix
-        # )
-        ./security.nix
-        ./services.nix
-        ./steam.nix
-        ./syncthing.nix
-        ./system.nix
-        ./thunar.nix
-        ./user.nix
-        ./virtualisation.nix
-        ./xserver.nix
-      ];
+    nixosModules = {
+      default = {config, ...}: {
+        imports = let
+          displayManager = config.hostdisplayManager or "sddm";
+        in [
+          stylix.nixosModules.stylix
+          sops-nix.nixosModules.sops
+          nix-flatpak.nixosModules.nix-flatpak
+          ./flatpak.nix
+          ./stylix.nix
+          ./sops.nix
+          ./doas.nix
+          ./fonts.nix
+          ./hardware.nix
+          ./network.nix
+          ./nfs.nix
+          ./nh.nix
+          ./packages.nix
+          ./printing.nix
+          ./sddm.nix
+          (
+            if displayManager == "tui"
+            then ./greetd.nix
+            else ./sddm.nix
+          )
+          ./security.nix
+          ./services.nix
+          ./steam.nix
+          ./syncthing.nix
+          ./system.nix
+          ./thunar.nix
+          ./user.nix
+          ./virtualisation.nix
+          ./xserver.nix
+        ];
+      };
     };
   };
 }
