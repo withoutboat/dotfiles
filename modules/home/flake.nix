@@ -7,6 +7,7 @@
   };
 
   outputs = {home-manager, ...}: {
+    homeManagerModules.default = import ./default.nix;
     homeManagerModule = {
       host,
       system,
