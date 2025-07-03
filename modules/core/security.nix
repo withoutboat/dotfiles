@@ -1,17 +1,8 @@
 _: {
   security = {
     sudo = {
-      extraRules = [
-        {
-          groups = ["weel"];
-          commands = [
-            {
-              command = "ALL";
-              options = ["NOPASSWD"];
-            }
-          ];
-        }
-      ];
+      wheelNeedsPassword = false;
+      execWheelOnly = true;
     };
     rtkit.enable = true;
     polkit = {
