@@ -11,7 +11,9 @@
 
     home = {
       url = "path:./modules/home";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
     };
 
     nvf = {
@@ -38,13 +40,13 @@
         pryme = "withoutboat";
       };
 
-      modules =
-        [
-          ./hosts/mac-cero/flake.nix
-          core.nixosModules.default
-          ./profiles/intel
-        ]
-        ++ builtins.attrValues (home.homeConfigurations host);
+      modules = [
+        ./hosts/mac-cero
+        core.nixosModules.default
+        home.nixosModules.default
+        ./profiles/intel
+      ];
+      #  ++ builtins.attrValues (home.homeConfigurations host);
     };
   };
 }

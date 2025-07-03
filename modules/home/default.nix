@@ -1,4 +1,5 @@
 [
+  ./waybar/waybar-ddubs.nix
   ./scripts
   ./rofi
   ./yazi
@@ -35,8 +36,5 @@
   ./xdg.nix
   ./zoxide.nix
   ./vscode.nix
-  ./wezterm.nix
   ./ghostty.nix
-  ./tmux.nix
-  ./alacritty.nix
 ]
