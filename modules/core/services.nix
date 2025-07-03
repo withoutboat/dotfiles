@@ -1,4 +1,4 @@
-{profile, ...}: {
+{host, ...}: {
   # Services to start
   services = {
     libinput.enable = true; # Input Handling
@@ -18,7 +18,7 @@
 
     smartd = {
       enable =
-        if profile == "vm"
+        if host.name == "vm"
         then false
         else true;
       autodetect = true;
