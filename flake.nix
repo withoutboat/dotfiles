@@ -37,19 +37,14 @@
         inherit host;
         pryme = "withoutboat";
       };
-      modules = [
-        ./hosts/mac-cero/flake.nix
-        core.nixosModules.default
-        ({...}: {
-          imports = [
-            (home.homeManagerModule {
-              system = "x86_64-linux";
-              inherit host;
-            })
-          ];
-        })
-        ./profiles/intel
-      ];
+
+      modules =
+        [
+          ./hosts/mac-cero/flake.nix
+          core.nixosModules.default
+          ./profiles/intel
+        ]
+        ++ builtins.attrValues (home.homeConfigurations host);
     };
   };
 }
