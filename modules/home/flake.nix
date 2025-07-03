@@ -6,6 +6,15 @@
   };
 
   outputs = {home-manager, ...}: {
-    homeManagerModule = home-manager.nixosModules.home-manager;
+    homeManagerModule = {
+      host,
+      system,
+      ...
+    }: {
+      imports = [home-manager.nixosModules.home-manager];
+      home-manager = {
+        extraSpecialArgs = {inherit host system;};
+      };
+    };
   };
 }
