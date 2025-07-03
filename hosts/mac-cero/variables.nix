@@ -1,4 +1,6 @@
 {
+  name = "mac-cero";
+
   # Git Configuration ( For Pulling Software Repos )
   gitUsername = "Vladimr Markov";
   gitEmail = "withoutboat@gmail.com";

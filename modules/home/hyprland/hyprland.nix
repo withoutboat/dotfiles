@@ -3,14 +3,7 @@
   config,
   pkgs,
   ...
-}: let
-  inherit
-    (import ../../../hosts/${host}/variables.nix)
-    extraMonitorSettings
-    keyboardLayout
-    stylixImage
-    ;
-in {
+}: {
   home.packages = with pkgs; [
     swww
     grim
@@ -56,11 +49,11 @@ in {
         "killall -q swaync;sleep .5 && swaync"
         "nm-applet --indicator"
         "pypr &"
-        "sleep 1.5 && swww img ${stylixImage}"
+        "sleep 1.5 && swww img ${host.stylixImage}"
       ];
 
       input = {
-        kb_layout = "${keyboardLayout}";
+        kb_layout = "${host.keyboardLayout}";
         kb_options = [
           "grp:alt_caps_toggle"
           "caps:super"
@@ -169,7 +162,7 @@ in {
     extraConfig = "
       monitor=,preferred,auto,auto
       monitor=Virtual-1,1920x1080@60,auto,1
-      ${extraMonitorSettings}
+      ${host.extraMonitorSettings}
       # To enable blur on waybar uncomment the line below
       # Thanks to SchotjeChrisman
       #layerrule = blur,waybar

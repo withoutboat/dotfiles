@@ -1,6 +1,4 @@
-{host, ...}: let
-  inherit (import ../../hosts/${host}/variables.nix) consoleKeyMap;
-in {
+{host, ...}: {
   nix = {
     settings = {
       download-buffer-size = 250000000;
@@ -30,6 +28,6 @@ in {
     ZANEYOS_VERSION = "2.3";
     ZANEYOS = "true";
   };
-  console.keyMap = "${consoleKeyMap}";
+  console.keyMap = "${host.consoleKeyMap}";
   system.stateVersion = "23.11"; # Do not change!
 }

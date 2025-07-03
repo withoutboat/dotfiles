@@ -1,17 +1,7 @@
-{host, ...}: let
-  inherit
-    (import ../../hosts/${host}/variables.nix)
-    alacrittyEnable
-    ghosttyEnable
-    tmuxEnable
-    waybarChoice
-    weztermEnable
-    vscodeEnable
-    ;
-in {
+{host, ...}: {
   imports =
     [
-      waybarChoice
+      host.waybarChoice
       ./scripts
       ./rofi
       ./yazi
@@ -48,27 +38,27 @@ in {
       ./zoxide.nix
     ]
     ++ (
-      if vscodeEnable
+      if host.vscodeEnable
       then [./vscode.nix]
       else []
     )
     ++ (
-      if weztermEnable
+      if host.weztermEnable
       then [./wezterm.nix]
       else []
     )
     ++ (
-      if ghosttyEnable
+      if host.ghosttyEnable
       then [./ghostty.nix]
       else []
     )
     ++ (
-      if tmuxEnable
+      if host.tmuxEnable
       then [./tmux.nix]
       else []
     )
     ++ (
-      if alacrittyEnable
+      if host.alacrittyEnable
       then [./alacritty.nix]
       else []
     );

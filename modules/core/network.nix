@@ -23,7 +23,7 @@
   ];
 
   networking = {
-    hostName = "${host}";
+    hostName = "${host.name}";
     networkmanager.enable = true;
 
     wg-quick.interfaces.amneziawg0 = {
