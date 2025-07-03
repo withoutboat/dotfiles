@@ -8,6 +8,7 @@
           ./hardware.nix
           ./host-packages.nix
         ];
+        config.environment.variables = import ./variables.nix;
       };
     };
   };
