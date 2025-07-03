@@ -18,7 +18,5 @@ in {
       ./hardware.nix
       ./host-packages.nix
     ];
-
-    inherit variables;
   };
 }

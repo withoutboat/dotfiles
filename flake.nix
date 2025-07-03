@@ -29,15 +29,22 @@
   }: {
     nixosConfigurations.mac-cero = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-
       specialArgs = {
         inputs = {inherit nixpkgs core nvf;};
       };
-
       modules = [
         ./hosts/mac-cero/flake.nix
         core.nixosModules.default
-        home.homeManagerModule
+        ({config, ...}: {
+          imports = [
+            (home.homeManagerModule {
+              system = "x86_64-linux";
+              users = config.host.users or {};
+              username = config.host.username or null;
+              inherit (config) host;
+            })
+          ];
+        })
         ./profiles/intel
       ];
     };
