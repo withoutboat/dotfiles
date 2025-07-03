@@ -313,22 +313,6 @@
         "type": "github"
       }
     },
-    "mac-cero": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "path": "./hosts/mac-cero",
-        "type": "path"
-      },
-      "original": {
-        "path": "./hosts/mac-cero",
-        "type": "path"
-      },
-      "parent": []
-    },
     "mnw": {
       "locked": {
         "lastModified": 1748710831,
@@ -485,7 +469,6 @@
       "inputs": {
         "core": "core",
         "home": "home",
-        "mac-cero": "mac-cero",
         "nixpkgs": "nixpkgs_2",
         "nvf": "nvf"
       }

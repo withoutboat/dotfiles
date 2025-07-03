@@ -9,11 +9,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    mac-cero = {
-      url = "path:./hosts/mac-cero";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     home = {
       url = "path:./modules/home";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -27,29 +22,22 @@
 
   outputs = {
     nixpkgs,
-    mac-cero,
     core,
     home,
     nvf,
     ...
   }: {
     nixosConfigurations.mac-cero = nixpkgs.lib.nixosSystem {
-      inherit (mac-cero) system;
+      system = "x86_64-linux";
 
       specialArgs = {
-        host = mac-cero.config;
-        inputs = {inherit nixpkgs mac-cero core nvf;};
+        inputs = {inherit nixpkgs core nvf;};
       };
 
       modules = [
-        mac-cero.nixosModules.default
+        ./hosts/mac-cero/flake.nix
         core.nixosModules.default
         home.homeManagerModule
-        {
-          inherit (mac-cero.config) users;
-          inherit (mac-cero) system;
-          inherit (mac-cero.config) username;
-        }
         ./profiles/intel
       ];
     };
