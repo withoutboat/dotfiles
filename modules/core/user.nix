@@ -1,32 +1,30 @@
 {
   pkgs,
-  inputs,
   username,
   host,
-  profile,
   ...
 }: let
   home = "/home/${username}";
 in {
-  imports = [inputs.home-manager.nixosModules.home-manager];
+  # imports = [inputs.home-manager.nixosModules.home-manager];
 
-  home-manager = {
-    sharedModules = [
-      #  sops-nix.homeManagerModules.sops
-    ];
-    useUserPackages = true;
-    useGlobalPkgs = false;
-    backupFileExtension = "backup";
-    extraSpecialArgs = {inherit inputs username host profile;};
-    users.${username} = {
-      imports = [./../home];
-      home = {
-        username = "${username}";
-        homeDirectory = "${home}";
-        stateVersion = "23.11";
-      };
-    };
-  };
+  # home-manager = {
+  #   sharedModules = [
+  #     #  sops-nix.homeManagerModules.sops
+  #   ];
+  #   useUserPackages = true;
+  #   useGlobalPkgs = false;
+  #   backupFileExtension = "backup";
+  #   extraSpecialArgs = {inherit inputs username host profile;};
+  #   users.${username} = {
+  #     imports = [./../home];
+  #     home = {
+  #       username = "${username}";
+  #       homeDirectory = "${home}";
+  #       stateVersion = "23.11";
+  #     };
+  #   };
+  # };
 
   sops.secrets."ssh_private_key_${username}" = {
     owner = username;

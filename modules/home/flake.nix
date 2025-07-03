@@ -2,7 +2,6 @@
   description = "Home-manager flake module for multi-user setup";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-23.11";
     home-manager.url = "github:nix-community/home-manager";
     # Add more inputs here if needed
   };
@@ -11,7 +10,11 @@
     homeManagerModule = {
       system,
       users,
-    }: {...}: {
+    }: {
+      username,
+      host,
+      ...
+    }: {
       imports = [home-manager.nixosModules.home-manager];
       home-manager = {
         sharedModules = [
@@ -20,7 +23,7 @@
         useUserPackages = true;
         useGlobalPkgs = false;
         backupFileExtension = "backup";
-        #  extraSpecialArgs = {inherit inputs;};
+        extraSpecialArgs = {inherit username host;};
         users = builtins.listToAttrs (
           map (user: {
             inherit (user) name;

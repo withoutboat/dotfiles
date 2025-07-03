@@ -259,6 +259,22 @@
         "type": "github"
       }
     },
+    "home": {
+      "inputs": {
+        "home-manager": "home-manager_2"
+      },
+      "locked": {
+        "path": "../../modules/home",
+        "type": "path"
+      },
+      "original": {
+        "path": "../../modules/home",
+        "type": "path"
+      },
+      "parent": [
+        "mac-cero"
+      ]
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -283,16 +299,14 @@
     },
     "home-manager_2": {
       "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
+        "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1751489990,
-        "narHash": "sha256-ENTd/sd4Vz/VJYn14SVqW1OH2m7WIAvsm9A9SrmDZRY=",
+        "lastModified": 1751500614,
+        "narHash": "sha256-mYiYNsTJkbQouC5YHOTgqVpjpELoNf9f4z5ZeY4NfPg=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "89af52d9a893af013f5f4c1d2d56912106827153",
+        "rev": "a5b56720841121d2189c011e445c4be4c943bab5",
         "type": "github"
       },
       "original": {
@@ -303,6 +317,7 @@
     },
     "mac-cero": {
       "inputs": {
+        "home": "home",
         "nixpkgs": [
           "nixpkgs"
         ]
@@ -400,6 +415,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1751271578,
+        "narHash": "sha256-P/SQmKDu06x8yv7i0s8bvnnuJYkxVGBWLWHaU+tt4YY=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "3016b4b15d13f3089db8a41ef937b13a9e33a8df",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nur": {
       "inputs": {
         "flake-parts": [
@@ -456,9 +487,8 @@
     "root": {
       "inputs": {
         "core": "core",
-        "home-manager": "home-manager_2",
         "mac-cero": "mac-cero",
-        "nixpkgs": "nixpkgs",
+        "nixpkgs": "nixpkgs_2",
         "nvf": "nvf"
       }
     },

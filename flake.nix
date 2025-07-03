@@ -14,11 +14,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nvf = {
       url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -29,18 +24,15 @@
     nixpkgs,
     mac-cero,
     core,
-    home-manager,
     nvf,
     ...
   }: {
     nixosConfigurations.mac-cero = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
+      inherit (mac-cero) system;
 
       specialArgs = {
         host = mac-cero.config;
-        inputs = {inherit nixpkgs mac-cero core home-manager nvf;};
-        username = "withoutboat";
-        profile = "mac-cero";
+        inputs = {inherit nixpkgs mac-cero core nvf;};
       };
 
       modules = [

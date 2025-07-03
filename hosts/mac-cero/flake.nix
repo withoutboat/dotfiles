@@ -1,13 +1,27 @@
 {
   description = "mac-cero host flake";
 
-  outputs = _: {
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    home.url = "../../modules/home";
+  };
+
+  outputs = {home, ...}: let
+    system = "x86_64-linux";
     config = import ./variables.nix;
+  in {
+    inherit config;
+    inherit system;
 
     nixosModules.default = {...}: {
       imports = [
         ./hardware.nix
         ./host-packages.nix
+        home.homeManagerModule
+        {
+          inherit system;
+          inherit (config) users;
+        }
       ];
     };
   };
