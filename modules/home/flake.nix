@@ -3,19 +3,17 @@
 
   inputs = {
     home-manager.url = "github:nix-community/home-manager";
-    # Add more inputs here if needed
   };
 
   outputs = {home-manager, ...}: {
     homeManagerModule = {
       system,
       users,
-    }: {
       username,
       host,
-      ...
     }: {
       imports = [home-manager.nixosModules.home-manager];
+
       home-manager = {
         sharedModules = [
           # sops-nix.homeManagerModules.sops

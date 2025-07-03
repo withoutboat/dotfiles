@@ -3,10 +3,9 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    home.url = "../../modules/home";
   };
 
-  outputs = {home, ...}: let
+  outputs = _: let
     system = "x86_64-linux";
     config = import ./variables.nix;
   in {
@@ -17,11 +16,6 @@
       imports = [
         ./hardware.nix
         ./host-packages.nix
-        home.homeManagerModule
-        {
-          inherit system;
-          inherit (config) users;
-        }
       ];
     };
   };

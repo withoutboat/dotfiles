@@ -14,6 +14,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    home = {
+      url = "path:./modules/home";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nvf = {
       url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -24,6 +29,7 @@
     nixpkgs,
     mac-cero,
     core,
+    home,
     nvf,
     ...
   }: {
@@ -38,6 +44,12 @@
       modules = [
         mac-cero.nixosModules.default
         core.nixosModules.default
+        home.homeManagerModule
+        {
+          inherit (mac-cero.config) users;
+          inherit (mac-cero) system;
+          inherit (mac-cero.config) username;
+        }
         ./profiles/intel
       ];
     };

@@ -264,16 +264,14 @@
         "home-manager": "home-manager_2"
       },
       "locked": {
-        "path": "../../modules/home",
+        "path": "./modules/home",
         "type": "path"
       },
       "original": {
-        "path": "../../modules/home",
+        "path": "./modules/home",
         "type": "path"
       },
-      "parent": [
-        "mac-cero"
-      ]
+      "parent": []
     },
     "home-manager": {
       "inputs": {
@@ -317,7 +315,6 @@
     },
     "mac-cero": {
       "inputs": {
-        "home": "home",
         "nixpkgs": [
           "nixpkgs"
         ]
@@ -487,6 +484,7 @@
     "root": {
       "inputs": {
         "core": "core",
+        "home": "home",
         "mac-cero": "mac-cero",
         "nixpkgs": "nixpkgs_2",
         "nvf": "nvf"
