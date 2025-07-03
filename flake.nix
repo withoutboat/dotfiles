@@ -27,13 +27,15 @@
     nvf,
     ...
   }: let
-    host = import ./hosts/mac-cer/variables.nix;
+    host = import ./hosts/mac-cero/variables.nix;
   in {
     nixosConfigurations.mac-cero = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
+
       specialArgs = {
         inputs = {inherit nixpkgs core nvf;};
         inherit host;
+        pryme = "withoutboat";
       };
       modules = [
         ./hosts/mac-cero/flake.nix

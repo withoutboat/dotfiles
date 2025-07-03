@@ -1,6 +1,6 @@
 {
   pkgs,
-  username,
+  pryme,
   ...
 }: {
   programs.nh = {
@@ -9,7 +9,7 @@
       enable = true;
       extraArgs = "--keep-since 7d --keep 5";
     };
-    flake = "/home/${username}/zaneyos";
+    flake = "/home/${pryme}/zaneyos";
   };
 
   environment.systemPackages = with pkgs; [
