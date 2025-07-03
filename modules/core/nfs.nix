@@ -1,8 +1,6 @@
-{host, ...}: let
-  inherit (import ../../hosts/${host}/variables.nix) enableNFS;
-in {
+{host, ...}: {
   services = {
-    rpcbind.enable = enableNFS;
-    nfs.server.enable = enableNFS;
+    rpcbind.enable = host.enableNFS;
+    nfs.server.enable = host. enableNFS;
   };
 }

@@ -1,9 +1,4 @@
-{host, ...}: let
-  inherit
-    (import ../../../hosts/${host}/variables.nix)
-    extraMonitorSettings
-    ;
-in {
+{host, ...}: {
   wayland.windowManager.hyprland = {
     settings = {
       windowrulev2 = [
@@ -77,7 +72,7 @@ in {
 
     extraConfig = "
       monitor=,preferred,auto,auto
-      ${extraMonitorSettings}
+      ${host.extraMonitorSettings}
     ";
   };
 }

@@ -22,9 +22,9 @@
     ...
   }: {
     nixosModules = {
-      default = {config, ...}: {
+      default = {host, ...}: {
         imports = let
-          displayManager = config.hostdisplayManager or "sddm";
+          displayManager = host.displayManager or "sddm";
         in [
           stylix.nixosModules.stylix
           sops-nix.nixosModules.sops
