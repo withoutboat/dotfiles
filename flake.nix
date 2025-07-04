@@ -21,7 +21,6 @@
     nixpkgs,
     core,
     home,
-    nvf,
     ...
   }: let
     host = import ./hosts/mac-cero/variables.nix;
@@ -30,7 +29,6 @@
       system = "x86_64-linux";
 
       specialArgs = {
-        inputs = {inherit nvf;};
         inherit host;
         pryme = "withoutboat";
       };
