@@ -2,7 +2,7 @@
   imports = [
     ./waybar/waybar-ddubs.nix
     ./scripts
-    ./rofi
+    # ./rofi
     ./yazi
     ./zsh
     ./age-agent.nix
@@ -19,19 +19,19 @@
     ./fastfetch
     ./fzf.nix
     ./gh.nix
-    # ./git.nix
-    # ./gtk.nix
-    # ./htop.nix
-    # ./hyprland
-    # ./kitty.nix
-    # ./lazygit.nix
-    # ./nvf.nix
-    # ./qt.nix
-    # ./starship.nix
-    # ./starship-ddubs-1.nix
-    # ./stylix.nix
-    # ./swappy.nix
-    # ./swaync.nix
+    ./git.nix
+    ./gtk.nix
+    ./htop.nix
+    ./hyprland
+    ./kitty.nix
+    ./lazygit.nix
+    ./nvf.nix
+    ./qt.nix
+    ./starship.nix
+    ./starship-ddubs-1.nix
+    ./stylix.nix
+    ./swappy.nix
+    ./swaync.nix
 
     ./telegram.nix
     ./virtmanager.nix

@@ -11,7 +11,11 @@
     };
   };
 
-  outputs = {home-manager, ...}: {
+  outputs = {
+    home-manager,
+    nvf,
+    ...
+  }: {
     nixosModules.default = {
       host,
       pryme,
@@ -19,6 +23,7 @@
     }: {
       imports = [
         home-manager.nixosModules.home-manager
+        nvf.homeManagerModules.default
       ];
 
       home-manager = {
