@@ -10,5 +10,6 @@
     android-studio-tools
     android-tools
     vial
+    wireguard-tools
   ];
 }

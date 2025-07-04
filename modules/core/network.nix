@@ -26,7 +26,7 @@
     hostName = "${host.name}";
     networkmanager.enable = true;
 
-    wg-quick.interfaces.amneziawg0 = {
+    wg-quick.interfaces.awg = {
       type = "amneziawg";
       address = ["10.8.1.15/32"];
       privateKeyFile = config.sops.secrets.awg_private_key.path;

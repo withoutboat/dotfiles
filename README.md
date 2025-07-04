@@ -1,6 +1,15 @@
-<div align="center">
+# NixOS
 
-# Hyprland Keybindings
+## Managing WireGuard Interfaces on NixOS
+
+| Action  | Command                                       |
+| ------- | --------------------------------------------- |
+| Start   | `sudo systemctl start wg-quick-awg.service`   |
+| Stop    | `sudo systemctl stop wg-quick-awg.service`    |
+| Restart | `sudo systemctl restart wg-quick-awg.service` |
+| Status  | `sudo systemctl status wg-quick-awg.service`  |
+
+## Hyprland Keybindings
 
 Below are the keybindings for Hyprland, formatted for easy reference.
 
