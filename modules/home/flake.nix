@@ -9,11 +9,18 @@
       url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nvim = {
+      url = "git+ssh://git@github.com:withoutboat/nvim-flake.git";
+      inputs.nixpkgs.follows = "nixpkgs";
+      flake = false;
+    };
   };
 
   outputs = {
     home-manager,
     nvf,
+    nvim,
     ...
   }: {
     nixosModules.default = {
@@ -42,6 +49,7 @@
               imports = [
                 ./default.nix
                 nvf.homeManagerModules.default
+                nvim.homeManagerModules.default
               ];
               home = {
                 username = user;
