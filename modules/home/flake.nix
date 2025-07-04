@@ -11,9 +11,8 @@
     };
 
     nvim = {
-      url = "git+ssh://git@github.com:withoutboat/nvim-flake.git";
+      url = "git+ssh://git@github.com/withoutboat/nvim-flake.git?ref=main";
       inputs.nixpkgs.follows = "nixpkgs";
-      flake = false;
     };
   };
 
