@@ -39,7 +39,6 @@
         core.nixosModules.default
         ./profiles/intel
       ];
-      #  ++ builtins.attrValues (home.homeConfigurations host);
     };
   };
 }

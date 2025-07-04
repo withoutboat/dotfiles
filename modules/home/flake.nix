@@ -24,7 +24,7 @@
           map (user: {
             name = user;
             value = {
-              #       imports = [./default.nix];
+              imports = [./default.nix];
               useUserPackage = true;
               useGlobalPkgs = false;
               backupFileExtension = "backup";
