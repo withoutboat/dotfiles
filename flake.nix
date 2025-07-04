@@ -15,11 +15,6 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
-
-    nvf = {
-      url = "github:notashelf/nvf";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = {
@@ -42,8 +37,8 @@
 
       modules = [
         ./hosts/mac-cero
-        core.nixosModules.default
         home.nixosModules.default
+        core.nixosModules.default
         ./profiles/intel
       ];
       #  ++ builtins.attrValues (home.homeConfigurations host);
