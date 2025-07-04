@@ -9,5 +9,6 @@
     android-studio
     android-studio-tools
     android-tools
+    vial
   ];
 }

@@ -1,6 +1,7 @@
 {...}: {
   imports = [
-    ./waybar/waybar-ddubs.nix
+    #./waybar/waybar-ddubs.nix
+    ./waybar/waybar-ddubs-2.nix
     ./scripts
     ./rofi
     ./yazi
