@@ -23,7 +23,6 @@
     }: {
       imports = [
         home-manager.nixosModules.home-manager
-        nvf.homeManagerModules.default
       ];
 
       home-manager = {
@@ -40,7 +39,10 @@
           map (user: {
             name = user;
             value = {
-              imports = [./default.nix];
+              imports = [
+                ./default.nix
+                nvf.homeManagerModules.default
+              ];
               home = {
                 username = user;
                 homeDirectory = "/home/${user}";

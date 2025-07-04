@@ -2,7 +2,7 @@
   imports = [
     ./waybar/waybar-ddubs.nix
     ./scripts
-    # ./rofi
+    ./rofi
     ./yazi
     ./zsh
     ./age-agent.nix
