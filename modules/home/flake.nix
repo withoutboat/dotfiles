@@ -12,22 +12,30 @@
   };
 
   outputs = {home-manager, ...}: {
-    nixosModules.default = {host, ...}: {
+    nixosModules.default = {
+      host,
+      pryme,
+      ...
+    }: {
       imports = [
         home-manager.nixosModules.home-manager
       ];
 
       home-manager = {
-        useGlobalPkgs = true;
-        extraSpecialArgs = {inherit host;};
+        useUserPackages = true;
+        useGlobalPkgs = false;
+        backupFileExtension = "backup";
+
+        extraSpecialArgs = {
+          inherit pryme;
+          inherit host;
+        };
+
         users = builtins.listToAttrs (
           map (user: {
             name = user;
             value = {
               imports = [./default.nix];
-              useUserPackage = true;
-              useGlobalPkgs = false;
-              backupFileExtension = "backup";
               home = {
                 username = user;
                 homeDirectory = "/home/${user}";
