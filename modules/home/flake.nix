@@ -47,7 +47,7 @@
             value = {
               imports = [
                 ./default.nix
-                nvf.homeManagerModules.default
+               # nvf.homeManagerModules.default
                 nvim.homeManagerModules.default
               ];
               home = {
