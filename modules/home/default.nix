@@ -26,14 +26,13 @@
     ./hyprland
     ./kitty.nix
     ./lazygit.nix
-    ./nvf.nix
+    # ./nvf.nix
     ./qt.nix
     ./starship.nix
     ./starship-ddubs-1.nix
     ./stylix.nix
     ./swappy.nix
     ./swaync.nix
-
     ./telegram.nix
     ./virtmanager.nix
     ./xdg.nix
