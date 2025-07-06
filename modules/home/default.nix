@@ -1,4 +1,12 @@
-{...}: {
+{lib, ...}: {
+  home.activation.importEnvSecrets = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    if [ -f /run/secrets/environment.env ]; then
+      set -a
+      source /run/secrets/environment.env
+      set +a
+    fi
+  '';
+
   imports = [
     #./waybar/waybar-ddubs.nix
     #./waybar/waybar-ddubs-2.nix

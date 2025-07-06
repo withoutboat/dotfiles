@@ -24,15 +24,16 @@ in {
   };
 
   sops.secrets.environment = {
+    owner = pryme;
     sopsFile = ../../secrets/environment.env;
-    format = "binary";
+    format = "dotenv";
   };
 
   systemd.services.environment = {
-  serviceConfig = {
-    EnvironmentFile = config.sops.secrets.environment.path;
+    serviceConfig = {
+      EnvironmentFile = config.sops.secrets.environment.path;
+    };
   };
-};
 
   users.mutableUsers = true;
   users.users.${pryme} = {
