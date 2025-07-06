@@ -24,7 +24,8 @@ in {
   };
 
   sops.secrets.environment = {
-    sopsFile = ../../secrets/environment.yaml;
+    sopsFile = ../../secrets/environment.env;
+    format = "binary";
   };
 
   systemd.services.environment = {
