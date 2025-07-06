@@ -1,11 +1,13 @@
 {...}: {
   imports = [
     #./waybar/waybar-ddubs.nix
-    ./waybar/waybar-ddubs-2.nix
+    #./waybar/waybar-ddubs-2.nix
+    ./tokens.nix
     ./scripts
     ./rofi
     ./yazi
     ./zsh
+    ./tokens.nix
     ./age-agent.nix
     ./age-keygen.nix
     ./wlogout
