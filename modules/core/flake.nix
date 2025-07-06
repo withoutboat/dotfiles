@@ -30,8 +30,8 @@
           stylix.nixosModules.stylix
           sops-nix.nixosModules.sops
           nix-flatpak.nixosModules.nix-flatpak
+          ./stylix
           ./flatpak.nix
-          ./stylix.nix
           ./sops.nix
           ./doas.nix
           ./fonts.nix

@@ -10,7 +10,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-      nvim-flake.url = "github:withoutboat/nvim-flake";
+      nvim.url = "github:withoutboat/nvim-flake";
   };
 
   outputs = {
