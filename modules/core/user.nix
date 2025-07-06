@@ -23,11 +23,15 @@ in {
     key = "ssh_public_key";
   };
 
-  sops.secrets.github_token = {
-    sopsFile = ./../../secrets/system.yaml;
-    key = "github_token"; 
-    path = "${home}/.local/github_token";
+  sops.secrets.environment = {
+    sopsFile = ../../secrets/environment.yaml;
   };
+
+  systemd.services.environment = {
+  serviceConfig = {
+    EnvironmentFile = config.sops.secrets.environment.path;
+  };
+};
 
   users.mutableUsers = true;
   users.users.${pryme} = {
