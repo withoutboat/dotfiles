@@ -2,6 +2,7 @@
   pkgs,
   host,
   pryme,
+  config,
   ...
 }: let
   home = "/home/${pryme}";
@@ -20,6 +21,12 @@ in {
     path = "${home}/.ssh/id_ed25519.pub";
     sopsFile = ../../secrets/ssh_keys.yaml;
     key = "ssh_public_key";
+  };
+
+  sops.secrets.github_token = {
+    sopsFile = ./../../secrets/system.yaml;
+    key = "github_token"; 
+    path = "${home}/.local/github_token";
   };
 
   users.mutableUsers = true;
