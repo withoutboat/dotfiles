@@ -6,6 +6,9 @@
   gitUsername = "Vladimr Markov";
   gitEmail = "withoutboat@gmail.com";
 
+  wifiSsid = "TP-Link_53A8";
+  wifiKey = "prot";
+
   # Set Displau Manager
   # `tui` for Text login
   # `sddm` for graphical GUI

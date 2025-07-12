@@ -18,13 +18,38 @@
     key = "preshared_key";
   };
 
+  sops.secrets.wifi_password = {
+    sopsFile = ../../secrets/wifi.yaml;
+    mode = "0400";
+    owner = "root";
+    key = "${host.wifiKey}";
+  };
+
   environment.systemPackages = with pkgs; [
     networkmanagerapplet
   ];
 
   networking = {
     hostName = "${host.name}";
-    networkmanager.enable = true;
+    networkmanager = {
+      enable = true;
+      connections = [
+        {
+          connection.id = "${host.wifiSsid}";
+          connection.type = "802-11-wireless";
+          "802-11-wireless" = {
+            ssid = host.wifiSsid;
+            mode = "infrastraction";
+          };
+          "802-11-wireless-security" = {
+            key-mgmt = "wpa-psk";
+            psk-file = config.sops.secrets.wifi_password.path;
+          };
+          ipv4.mehtod = "auto";
+          ipv6.mehtod = "auto";
+        }
+      ];
+    };
 
     wg-quick.interfaces.awg = {
       type = "amneziawg";
