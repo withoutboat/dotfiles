@@ -29,6 +29,14 @@ in {
     format = "dotenv";
   };
 
+  sops.secrets.github_copilot = {
+    owner = pryme;
+    mode = "0600";
+    sopsFile = ../../secrets/github_copilot.json.enc;
+    format = "binary";
+    path = "${home}/.config/github-copilot/hosts.json";
+  };
+
   systemd.services.environment = {
     serviceConfig = {
       EnvironmentFile = config.sops.secrets.environment.path;

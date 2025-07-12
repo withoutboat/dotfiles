@@ -1,4 +1,6 @@
 {lib, ...}: {
+  programs.gh.enable = true;
+
   home.activation.importEnvSecrets = lib.hm.dag.entryAfter ["writeBoundary"] ''
     if [ -f /run/secrets/environment.env ]; then
       set -a
@@ -8,7 +10,7 @@
   '';
 
   imports = [
-    #./waybar/waybar-ddubs.nix
+    ./waybar/waybar-ddubs.nix
     #./waybar/waybar-ddubs-2.nix
     ./scripts
     ./rofi
